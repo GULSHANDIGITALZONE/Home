@@ -6,6 +6,8 @@
     <title>Quiz</title>
 </head>
 <body>
+    	<div id="site-header"></div>
+
     <style>
         body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;margin:0;padding:20px}
         .wrap{max-width:980px;margin:18px auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 6px 30px rgba(20,30,60,0.06)}
@@ -62,6 +64,33 @@
 
         <p style="margin-top:18px;color:#555">Tip: Click a quiz to start. If you want the questions in Hindi or tailored to a specific syllabus, tell me and I will update them.</p>
     </div>
+<script>
+  async function loadFragment(url, targetId) {
+    try {
+      const res = await fetch(url, { mode: 'cors' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+      const html = await res.text();
+      const el = document.getElementById(targetId);
+      if (!el) throw new Error(`Target element #${targetId} not found`);
+      el.innerHTML = html;
+      console.log(`Loaded ${url} → #${targetId}`);
+    } catch (err) {
+      console.error(`Error loading ${url}:`, err);
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.innerHTML = `<div style="padding:12px; background:#fff4f4; color:#900; border:1px solid #f5c2c2;">
+          Error loading content. Check console (Ctrl+Shift+J).
+        </div>`;
+      }
+    }
+  }
 
+  // use correct paths — change if filenames अलग हैं
+  // अगर Header.html और footer.html same site पर हैं तो relative path बेहतर है
+  loadFragment('/Header.html', 'site-header');
+  loadFragment('/footer.html', 'site-footer');
+</script>
+  
+<div id="site-footer"></div>
 </body>
   

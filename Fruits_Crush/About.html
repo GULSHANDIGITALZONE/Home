@@ -3,129 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruits Crush GDZ - Master Reference Guide</title>
+    <title>About - Fruits Crush GDZ</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
-        header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 40px; text-align: center; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; }
-        .section { background: white; padding: 30px; margin-bottom: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 5px solid #2a5298; }
-        h2 { color: #1e3c72; border-bottom: 2px solid #eef2f7; padding-bottom: 10px; margin-top: 0; display: flex; align-items: center; }
-        .emoji { font-size: 1.5em; margin-right: 15px; }
-        .state-box { background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-top: 10px; }
-        .button-list { list-style: none; padding: 0; }
-        .button-list li { background: #e3f2fd; margin: 5px 0; padding: 10px; border-radius: 5px; border-left: 5px solid #2196F3; font-weight: bold; }
-        .logic-tag { display: inline-block; background: #ffeb3b; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; margin-bottom: 5px; }
-        .footer { text-align: center; margin-top: 50px; padding: 20px; color: #666; border-top: 1px solid #ccc; }
-        b { color: #d32f2f; }
-        code { background: #eee; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eef2f7;
+            margin-bottom: 20px;
+        }
+        h1 { color: #1e3c72; margin: 0; }
+        h2 { color: #2a5298; border-left: 4px solid #1e3c72; padding-left: 10px; margin-top: 25px; }
+        p { margin: 10px 0; }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li {
+            background: #e3f2fd;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-list li::before {
+            content: "🌟";
+            margin-right: 10px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .highlight { color: #d32f2f; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Fruits Crush GDZ 🍎</h1>
-    <p>Project Code Recovery & Full Functionality Reference Guide</p>
-</header>
+<div class="container">
+    <header>
+        <h1>Fruits Crush GDZ 🍎</h1>
+        <p>आपका पसंदीदा फ्रूट मैचिंग एडवेंचर!</p>
+    </header>
 
-<div class="section">
-    <h2><span class="emoji">🎬</span>1. स्टार्टअप और स्प्लैश (App Startup)</h2>
-    <div class="state-box">
-        <b>Splash Screen Flow:</b>
-        <ul>
-            <li><b>एनीमेशन:</b> लोगो ज़ूम-इन होता है और <code>loading_text</code> ब्लिंक करता है।</li>
-            <li><b>साउंड:</b> बैकग्राउंड में <code>start_sound.raw</code> बजता है।</li>
-            <li><b>ट्रांजिशन:</b> 3 सेकंड के <code>Handler</code> डिले के बाद <code>StartActivity</code> खुलती है।</li>
+    <section>
+        <h2>गेम के बारे में (About the Game)</h2>
+        <p><b>Fruits Crush GDZ</b> एक मज़ेदार और चुनौतीपूर्ण "Match-3" पहेली गेम है। यहाँ आपको रंग-बिरंगे रसीले फलों को मैच करना है, धमाके करने हैं और अगले लेवल्स तक पहुँचना है। चाहे आप फ्री टाइम में खेल रहे हों या अपने हाई स्कोर को चुनौती दे रहे हों, यह गेम आपको घंटों तक मनोरंजन प्रदान करेगा।</p>
+    </section>
+
+    <section>
+        <h2>मुख्य विशेषताएं (Key Features)</h2>
+        <ul class="feature-list">
+            <li><b>1000+ लेवल्स:</b> कभी न खत्म होने वाला मज़ा और हर लेवल पर नई चुनौती।</li>
+            <li><b>पावर-अप्स:</b> रॉकेट 🚀 और बम 💣 जैसे खास टूल्स जो मुश्किल लेवल्स को आसान बनाते हैं।</li>
+            <li><b>लकी स्पिन:</b> हर रोज़ अपनी किस्मत आज़माएं और मुफ्त सिक्के जीतें। 🎡</li>
+            <li><b>शानदार ग्राफिक्स:</b> ताज़ा फलों के सुंदर डिज़ाइन और स्मूथ एनीमेशन।</li>
+            <li><b>ऑफ़लाइन खेलें:</b> इंटरनेट नहीं है? कोई बात नहीं! आप कभी भी, कहीं भी खेल सकते हैं।</li>
         </ul>
-    </div>
-</div>
+    </section>
 
-<div class="section">
-    <h2><span class="emoji">🏠</span>2. होम स्क्रीन (Start Screen Logic)</h2>
-    <div class="state-box">
-        <ul>
-            <li><b>Banner Ads:</b> होम स्क्रीन के सबसे ऊपर (Top) विज्ञापन दिखता है।</li>
-            <li><b>Free Coins:</b> '+' बटन दबाकर एड देखने पर <b>200 सिक्के</b> मिलते हैं।</li>
-            <li><b>Daily Reward:</b> रोज़ाना ऐप खोलने पर <b>200 सिक्के</b> का बोनस डायलॉग आता है।</li>
-            <li><b>Level Entry:</b> लेवल टेक्स्ट पर क्लिक करके 1000 लेवल्स का ग्रिड खुलता है।</li>
-        </ul>
-    </div>
-</div>
+    <section>
+        <h2>कैसे खेलें? (How to Play)</h2>
+        <p>1. एक ही तरह के 3 या उससे ज़्यादा फलों को एक साथ मिलाएँ (Match करें)।</p>
+        <p>2. खास कॉम्बो बनाने के लिए 4 या 5 फलों को मैच करें और <b>स्पेशल फल</b> पायें।</p>
+        <p>3. हर लेवल का एक 'टारगेट स्कोर' होता है, उसे सीमित मूव्स में पूरा करें।</p>
+        <p>4. मुश्किल समय में रॉकेट और बम का इस्तेमाल करें।</p>
+    </section>
 
-<div class="section">
-    <h2><span class="emoji">🏆</span>3. जीत की स्थिति (Winning - dialog_win.xml)</h2>
-    <p>जब प्लेयर टारगेट स्कोर पूरा कर लेता है, तो यह डायलॉग आता है:</p>
-    <div class="state-box">
-        <b>UI एलिमेंट्स:</b> 'Congratulations' वाली इमेज, <code>winScoreText</code> और <code>winCoinsText</code>।
-        <ul class="button-list">
-            <li>🔘 <b>btnNextLevel:</b> अगले लेवल पर जाने के लिए।</li>
-            <li>🔘 <b>btnWinPlayAgain:</b> वही लेवल फिर से खेलने के लिए।</li>
-        </ul>
-        <span class="logic-tag">Winning Logic:</span> स्कोर के हर 50 पॉइंट पर 1 सिक्का (Coin) बैलेंस में जुड़ता है।
-        <br><b>Confetti Effect:</b> जीतते ही स्क्रीन पर रंग-बिरंगे पटाखे (Stars) उ़ड़ते हैं।
-    </div>
-</div>
+    <section>
+        <h2>डेवलपर (Developer)</h2>
+        <p>यह गेम <b>RS GULSHAN PRAJAPATI</b> द्वारा प्यार और मेहनत से बनाया गया है। हमारा लक्ष्य आपको बेहतरीन और सुरक्षित गेमिंग अनुभव प्रदान करना है।</p>
+    </section>
 
-<div class="section">
-    <h2><span class="emoji">⚠️</span>4. मूव्स खत्म होना (Out of Moves - dialog_out_of_moves.xml)</h2>
-    <p>जब चालें (Moves) खत्म हो जाती हैं, तो प्लेयर को ये विकल्प मिलते हैं:</p>
-    <div class="state-box">
-        <ul class="button-list">
-            <li>🔘 <b>btnWatchAdMoves:</b> वीडियो एड देखें और <b>5 फ्री मूव्स</b> पाएं।</li>
-            <li>🔘 <b>btnBuyMoves:</b> 100 सिक्के खर्च करके 5 मूव्स खरीदें।</li>
-            <li>🔘 <b>btnGiveUp:</b> हार मान लें (यह Game Over डायलॉग खोलेगा)।</li>
-        </ul>
-    </div>
-</div>
+    <section>
+        <h2>संपर्क करें (Contact Us)</h2>
+        <p>अगर आपके पास कोई सुझाव है या आपको गेम में कोई परेशानी आ रही है, तो हमें यहाँ मेल करें:</p>
+        <p>📧 ईमेल: <span class="highlight">gulshandigitalzone@gmail.com</span></p>
+        <p>🌐 वेबसाइट: <a href="https://gdz.services/" target="_blank">https://gdz.services/</a></p>
+    </section>
 
-<div class="section">
-    <h2><span class="emoji">⏰</span>5. समय खत्म होना (Out of Time - dialog_out_of_time.xml)</h2>
-    <p>टाइम-बेस्ड लेवल्स में समय खत्म होने पर ये विकल्प आते हैं:</p>
-    <div class="state-box">
-        <ul class="button-list">
-            <li>🔘 <b>btnWatchAdTime:</b> एड देखकर <b>30 सेकंड</b> एक्स्ट्रा पाएं और टाइमर फिर से शुरू हो जाएगा।</li>
-            <li>🔘 <b>btnBuyTime:</b> 150 सिक्के खर्च करके 30 सेकंड खरीदें।</li>
-            <li>🔘 <b>btnGiveUpTime:</b> हार मान लें।</li>
-        </ul>
+    <div class="footer">
+        <p>&copy; 2026 Fruits Crush GDZ |</p>
+        <p>बनाने वाला: <b>RS GULSHAN PRAJAPATI</b></p>
+        <p>दिनांक: 14 फरवरी 2026</p>
     </div>
-</div>
-
-<div class="section">
-    <h2><span class="emoji">💀</span>6. पूरी तरह हारना (Lose/Game Over - dialog_game_over.xml)</h2>
-    <p>जब प्लेयर 'Give Up' करता है या चांस खत्म हो जाते हैं:</p>
-    <div class="state-box">
-        <b>UI एलिमेंट्स:</b> <code>failed</code> वाली बड़ी इमेज (failed.png)।
-        <ul class="button-list">
-            <li>🔘 <b>btnTryAgain:</b> उसी लेवल को शुरू से रीस्टार्ट करने के लिए।</li>
-        </ul>
-    </div>
-</div>
-
-<div class="section">
-    <h2><span class="emoji">🚀</span>7. स्पेशल पॉवर्स (Power-ups Logic)</h2>
-    <div class="state-box">
-        <ul>
-            <li><b>Rocket (🚀):</b> किसी भी फल के साथ स्वाइप (Swap) करें, 4 रॉकेट निकलेंगे जो पूरी <b>Horizontal और Vertical लाइन</b> साफ कर देंगे।</li>
-            <li><b>Rocket Refill:</b> रॉकेट के चलने के बाद बोर्ड अपने आप नए फलों से भर जाएगा।</li>
-            <li><b>Bomb (💣):</b> किसी भी फल के साथ स्वाइप करें, बोर्ड से उस रंग के सारे फल हटा देगा। धमाके के समय <code>explosion</code> साउंड बजेगा।</li>
-            <li><b>Whoosh Sound:</b> रॉकेट लॉन्च होने पर <code>whoosh.raw</code> साउंड प्ले होता है।</li>
-        </ul>
-    </div>
-</div>
-
-<div class="section">
-    <h2><span class="emoji">🎮</span>8. गेम इंटरफ़ेस (UI Layout)</h2>
-    <div class="state-box">
-        <ul>
-            <li><b>Top Banner:</b> गेम स्क्रीन पर भी विज्ञापन सबसे ऊपर (Toolbar के ऊपर) सेट है।</li>
-            <li><b>Progress Bar:</b> टारगेट के पास पहुँचने पर पीली पट्टी (Yellow Bar) भरती है।</li>
-            <li><b>Haptic Feedback:</b> मैच होने पर हल्का वाइब्रेशन (Vibration) महसूस होता है।</li>
-        </ul>
-    </div>
-</div>
-
-<div class="footer">
-    <p><b>Developer Note:</b> This document is updated with all extra features including Rocket projectiles, Explosion sounds, and Top Banner Ads seating.</p>
-    <p>&copy; Fruits Crush GDZ Project Reference</p>
 </div>
 
 </body>

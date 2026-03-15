@@ -15,6 +15,8 @@
     </style>
 </head>
 <body>
+      <div id="site-header"></div>
+
     <div class="container">
         <h1>MyNotepad <span class="brand">GDZ</span></h1>
         <p style="text-align:center; font-style: italic;"> capture everything, anywhere.</p>
@@ -73,5 +75,34 @@
     <ul>
         <li>By email: gulshandigitalzone@gmail.com</li>
     </ul>
+
+    <script>
+  async function loadFragment(url, targetId) {
+    try {
+      const res = await fetch(url, { mode: 'cors' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+      const html = await res.text();
+      const el = document.getElementById(targetId);
+      if (!el) throw new Error(`Target element #${targetId} not found`);
+      el.innerHTML = html;
+      console.log(`Loaded ${url} → #${targetId}`);
+    } catch (err) {
+      console.error(`Error loading ${url}:`, err);
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.innerHTML = `<div style="padding:12px; background:#fff4f4; color:#900; border:1px solid #f5c2c2;">
+          Error loading content. Check console (Ctrl+Shift+J).
+        </div>`;
+      }
+    }
+  }
+
+  // use correct paths — change if filenames अलग हैं
+  // अगर Header.html और footer.html same site पर हैं तो relative path बेहतर है
+  loadFragment('/Header.html', 'site-header');
+  loadFragment('/footer.html', 'site-footer');
+</script>
+  
+<div id="site-footer"></div>
 </body>
 </html>

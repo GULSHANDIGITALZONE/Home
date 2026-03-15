@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalWork - ऐप की जानकारी</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            color: #333;
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1E3C72;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        .app-tagline {
+            text-align: center;
+            color: #4158D0;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: #4158D0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 22px;
+        }
+        .feature-card {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid #4158D0;
+            background: #f8faff;
+            border-radius: 0 12px 12px 0;
+            transition: transform 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: translateX(8px);
+            background: #f0f4ff;
+        }
+        .feature-card strong {
+            color: #1E3C72;
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .download-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff;
+            border: 2px dashed #4158D0;
+            border-radius: 15px;
+        }
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #000;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            transition: transform 0.2s;
+        }
+        .download-button:hover {
+            transform: scale(1.05);
+        }
+        .download-button img {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+        }
+        .btn-text {
+            text-align: left;
+            line-height: 1.2;
+        }
+        .btn-text small {
+            font-size: 10px;
+            display: block;
+        }
+        .btn-text b {
+            font-size: 18px;
+        }
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+        .step-list li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 12px 15px 12px 45px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .step-list li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 12px;
+            background: #4158D0;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #888;
+        }
+        .badge {
+            background: #FFD700;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>LocalWork</h1>
+    <p class="app-tagline">Connect. Work. Grow.</p>
+
+    <!-- TOP DOWNLOAD BUTTON -->
+    <div class="download-container">
+        <p style="margin-bottom: 15px; font-weight: bold; color: #333;">आधिकारिक ऐप यहाँ से डाउनलोड करें</p>
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store Icon">
+            <div class="btn-text">
+                <small>GET IT ON</small>
+                <b>Google Play</b>
+            </div>
+        </a>
+    </div>
+
+    <p>नमस्ते! <strong>LocalWork</strong> ऐप को आपकी जरूरतों और सुरक्षा को ध्यान में रखकर बनाया गया है। यह भारत का अपना प्लेटफॉर्म है जहाँ आप आसानी से काम दे सकते हैं या काम पा सकते हैं।</p>
+
+    <h2>🚀 बेहतरीन सुविधाएं (Key Features)</h2>
+
+    <div class="feature-card">
+        <strong>👷 Workers (काम):</strong> अपने इलाके के अनुभवी प्लंबर, इलेक्ट्रिशियन, पेंटर और 30+ कैटेगरी के कारीगरों को खोजें। उनकी प्रोफाइल और रेटिंग देखें।
+    </div>
+
+    <div class="feature-card">
+        <strong>💼 Job (नौकरी):</strong> अगर आपको स्टाफ की जरूरत है, तो यहाँ जॉब पोस्ट करें। काम ढूंढने वाले सीधे आपसे संपर्क करेंगे।
+    </div>
+    <div class="feature-card">
+        <strong>❤️ saved Post:</strong>  पोस्‍ट देखते समय पसंद आये तो सेव कर सकते है ।
+    </div>
+    <div class="feature-card">
+        <strong>👤 Digital ID Card:</strong> प्रोफाइल पूरी करते ही आपको मिलता है एक शानदार डिजिटल पहचान पत्र, जिसे आप कहीं भी शेयर कर सकते हैं।
+    </div>
+
+    <div class="feature-card">
+        <strong>🎙️ Smart Voice Search:</strong> अब टाइप करने की जरूरत नहीं! बस माइक बटन दबाएं और जो चाहिए वो बोलकर तुरंत खोजें।
+    </div>
+
+    <div class="feature-card">
+        <strong>💸 QR Payments:</strong> सुरक्षित पेमेंट लेने के लिए अपना UPI QR कोड जनरेट करें और सीधे बैंक खाते में पैसे रिसीव करें।
+    </div>
+
+    <div class="feature-card">
+        <strong>💬 Direct Connect:</strong> बिना नंबर सेव किए वर्कर या मालिक को सीधे व्हाट्सएप (WhatsApp) मैसेज भेजें या कॉल करें।
+    </div>
+
+    <div class="feature-card">
+        <strong>🚫 User Safety:</strong> गलत व्यवहार करने वाले यूज़र्स को ब्लॉक या रिपोर्ट करें। आपकी सुरक्षा हमारी पहली प्राथमिकता है।
+    </div>
+
+    <h2>📖 इस्तेमाल कैसे करें? (How to Use)</h2>
+    <p>LocalWork ऐप का इस्तेमाल करना बहुत आसान है। नीचे दिए गए स्टेप्स फॉलो करें और अपनी जरूरत के हिसाब से ऐप का फायदा उठाएं।</p>
+    
+    <h3>🔐 लॉगिन और साइन-अप (Login and Sign-up)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>ऐप खोलें:</strong> Google Play Store से LocalWork ऐप डाउनलोड और इंस्टॉल करें।</li>
+        <li data-step="2"><strong>लॉगिन करें:</strong> मोबाइल नंबर या Google अकाउंट से साइन-इन करें। OTP आएगा, उसे एंटर करें।</li>
+        <li data-step="3"><strong>प्रोफाइल बनाएं:</strong> अपना नाम, फोटो, पिनकोड और कौशल भरें। प्रोफाइल 100% कम्प्लीट करने से ज्यादा ऑप्शन्स मिलते हैं।</li>
+    </ul>
+
+    <h3>👷 वर्कर खोजें (Find Workers)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>होम स्क्रीन पर जाएं:</strong> ऐप खोलने पर मुख्य स्क्रीन दिखेगी।</li>
+        <li data-step="2"><strong>कैटेगरी चुनें:</strong> प्लंबर, इलेक्ट्रिशियन, पेंटर, कुक, डिलीवरी बॉय आदि कैटेगरी में से चुनें।</li>
+        <li data-step="3"><strong>वॉइस सर्च इस्तेमाल करें:</strong> माइक बटन दबाएं और बोलकर "प्लंबर चाहिए" कहें। ऐप स्वचालित रूप से खोज करेगा।</li>
+        <li data-step="4"><strong>लोकेशन सेट करें:</strong> अपना पिनकोड डालें ताकि नजदीकी वर्कर दिखें।</li>
+        <li data-step="5"><strong>वर्कर देखें:</strong> रेटिंग, रिव्यू और प्राइस देखकर वर्कर चुनें।</li>
+        <li data-step="6"><strong>कॉन्टैक्ट करें:</strong> 'Call' या 'WhatsApp' बटन दबाएं। बिना नंबर सेव किए सीधे संपर्क हो जाएगा।</li>
+    </ul>
+
+    <h3>� अपना प्रोफाइल पोस्ट करें (Post Your Worker Profile)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>अकाउंट सेक्शन जाएं:</strong> नेविगेशन में 'Account' टैब पर क्लिक करें।</li>
+        <li data-step="2"><strong>प्रोफाइल एडिट करें:</strong> 'Edit Profile' बटन दबाएं।</li>
+        <li data-step="3"><strong>विवरण भरें:</strong> अपना नाम, फोटो, कौशल (प्लंबर, इलेक्ट्रिशियन आदि), अनुभव, रेट और लोकेशन डालें।</li>
+        <li data-step="4"><strong>सर्टिफिकेट ऐड करें:</strong> अपनी योग्यता या सर्टिफिकेट की फोटो अपलोड करें।</li>
+        <li data-step="5"><strong>डिजिटल ID बनाएं:</strong> प्रोफाइल कम्प्लीट करने पर आपका डिजिटल ID कार्ड ऑटोमैटिक जनरेट हो जाएगा।</li>
+        <li data-step="6"><strong>पब्लिश करें:</strong> 'Save Profile' दबाएं। अब आपका प्रोफाइल सभी को दिखेगा और लोग आपसे संपर्क कर सकेंगे।</li>
+        <li data-step="7"><strong>रेटिंग पाएं:</strong> काम पूरा करने पर कस्टमर से रेटिंग और रिव्यू मिलेंगे।</li>
+    </ul>
+
+    <h3>�💼 जॉब पोस्ट करें (Post a Job)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>पोस्ट सेक्शन जाएं:</strong> नीचे नेविगेशन में 'Post' टैब पर क्लिक करें।</li>
+        <li data-step="2"><strong>जॉब डिटेल भरें:</strong> काम का विवरण, सैलरी, लोकेशन और समय लिखें।</li>
+        <li data-step="3"><strong>फोटो ऐड करें:</strong> काम से संबंधित फोटो अपलोड करें।</li>
+        <li data-step="4"><strong>पब्लिश करें:</strong> 'Post Job' बटन दबाएं। आपका जॉब सभी को दिखेगा।</li>
+        <li data-step="5"><strong>एप्लिकेशन मिलें:</strong> इंटरेस्टेड लोग आपसे संपर्क करेंगे।</li>
+    </ul>
+
+    <h3>💬 चैट और कम्युनिकेट (Chat and Communicate)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>चैट सेक्शन खोलें:</strong> नेविगेशन में 'Chat' पर जाएं।</li>
+        <li data-step="2"><strong>कॉन्वर्सेशन शुरू करें:</strong> किसी वर्कर या एम्प्लॉयर पर क्लिक करें।</li>
+        <li data-step="3"><strong>मेसेज भेजें:</strong> टेक्स्ट, इमोजी या वॉइस नोट भेजें।</li>
+        <li data-step="4"><strong>नोटिफिकेशन पाएं:</strong> नए मेसेज पर अलर्ट मिलेगा।</li>
+    </ul>
+
+    <h3>💸 पेमेंट करें (Make Payments)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>पेमेंट सेक्शन जाएं:</strong> 'Payments' टैब में अपना UPI QR कोड जनरेट करें।</li>
+        <li data-step="2"><strong>QR शेयर करें:</strong> कस्टमर को QR दिखाएं।</li>
+        <li data-step="3"><strong>पैसे रिसीव करें:</strong> पेमेंट सीधे आपके बैंक अकाउंट में आएगा।</li>
+        <li data-step="4"><strong>रेकॉर्ड रखें:</strong> सभी ट्रांजैक्शन ऐप में सेव रहेंगे।</li>
+    </ul>
+
+    <h3>🔒 सुरक्षा और सेटिंग्स (Safety and Settings)</h3>
+    <ul class="step-list">
+        <li data-step="1"><strong>ब्लॉक करें:</strong> किसी बुरे यूजर को 'Block' बटन से ब्लॉक करें।</li>
+        <li data-step="2"><strong>रिपोर्ट करें:</strong> गलत व्यवहार पर 'Report' करें।</li>
+        <li data-step="3"><strong>सेटिंग्स में जाएं:</strong> नोटिफिकेशन, थीम और प्राइवेसी सेट करें।</li>
+        <li data-step="4"><strong>लॉगआउट करें:</strong> जब जरूरत हो तो सेफ लॉगआउट करें।</li>
+    </ul>
+
+    <!-- BOTTOM DOWNLOAD BUTTON -->
+    <div class="download-container" style="background: #f0f4ff; border-style: solid;">
+        <p style="margin-bottom: 15px; font-weight: bold; color: #1E3C72;">आज ही जुड़ें और अपनी कमाई बढ़ाएं!</p>
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-button" style="background: #1E3C72;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store Icon">
+            <div class="btn-text">
+                <small>DOWNLOAD NOW</small>
+                <b>Google Play</b>
+            </div>
+        </a>
+    </div>
+
+    <p class="footer">LocalWork: आत्मनिर्भर भारत की एक नई पहचान।<br><strong>Developed by: RS GULSHAN PRAJAPATI (Gulshan Digital Zone)</strong></p>
+</div>
+
+</body>
+</html>

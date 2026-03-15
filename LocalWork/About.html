@@ -3,245 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LocalWork - ऐप की जानकारी</title>
+    <title>LocalWork (काम करो) - Master User Guide & Download Now</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            color: #333;
-            background-color: #f0f2f5;
-        }
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #1E3C72;
-            text-align: center;
-            font-size: 30px;
-            margin-bottom: 5px;
-        }
-        .app-tagline {
-            text-align: center;
-            color: #4158D0;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-        h2 {
-            color: #4158D0;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 8px;
-            margin-top: 30px;
-            font-size: 22px;
-        }
-        .feature-card {
-            margin-bottom: 15px;
-            padding: 15px;
-            border-left: 5px solid #4158D0;
-            background: #f8faff;
-            border-radius: 0 12px 12px 0;
-            transition: transform 0.2s ease;
-        }
-        .feature-card:hover {
-            transform: translateX(8px);
-            background: #f0f4ff;
-        }
-        .feature-card strong {
-            color: #1E3C72;
-            display: block;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        .download-container {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: #fff;
-            border: 2px dashed #4158D0;
-            border-radius: 15px;
-        }
-        .download-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: #000;
+        :root { --primary: #1E3C72; --secondary: #2A5298; --accent: #2e7d32; --bg: #f4f7f6; --employer: #d32f2f; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #333; background-color: var(--bg); padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 4px solid var(--primary); padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { color: var(--primary); font-size: 36px; text-transform: uppercase; margin: 0; }
+        h2 { color: var(--accent); border-left: 6px solid var(--accent); padding-left: 15px; margin-top: 40px; font-size: 28px; }
+        h3 { color: var(--primary); font-size: 22px; margin-top: 25px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
+        .step-container { background: #fffde7; border-left: 6px solid #fbc02d; padding: 25px; border-radius: 8px; margin: 20px 0; }
+
+        .worker-section { background: #e8f5e9; border: 2px solid var(--accent); padding: 30px; border-radius: 15px; margin: 30px 0; }
+        .employer-section { background: #ffebee; border: 2px solid var(--employer); padding: 30px; border-radius: 15px; margin: 30px 0; }
+
+        .highlight { color: #d32f2f; font-weight: bold; }
+        .screenshot-placeholder { background: #eaeff5; border: 2px dashed #bdc3c7; color: #7f8c8d; text-align: center; padding: 50px; margin: 20px 0; border-radius: 8px; font-style: italic; font-weight: bold; }
+        
+        /* Mast Download Button */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 15px 35px;
+            border-radius: 50px;
             text-decoration: none;
-            font-family: Arial, sans-serif;
-            transition: transform 0.2s;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+            transition: 0.3s;
+            text-transform: uppercase;
         }
-        .download-button:hover {
+        .download-btn:hover {
             transform: scale(1.05);
-        }
-        .download-button img {
-            width: 32px;
-            height: 32px;
-            margin-right: 12px;
-        }
-        .btn-text {
-            text-align: left;
-            line-height: 1.2;
-        }
-        .btn-text small {
-            font-size: 10px;
-            display: block;
-        }
-        .btn-text b {
-            font-size: 18px;
-        }
-        .step-list {
-            list-style: none;
-            padding: 0;
-        }
-        .step-list li {
-            background: #fff;
-            margin-bottom: 10px;
-            padding: 12px 15px 12px 45px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: relative;
-        }
-        .step-list li::before {
-            content: attr(data-step);
-            position: absolute;
-            left: 12px;
-            background: #4158D0;
+            box-shadow: 0 6px 20px rgba(56, 239, 125, 0.6);
             color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
         }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 14px;
-            color: #888;
-        }
-        .badge {
-            background: #FFD700;
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            vertical-align: middle;
-        }
+
+        .footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; color: #777; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; color: white; }
     </style>
 </head>
 <body>
 
-      <div id="site-header"></div>
+<div class="container">
+    <div class="header">
+        <h1>LocalWork (काम करो) - Master Guide</h1>
+        <p>आत्मनिर्भर भारत: काम ढूंढने और काम देने वालों के लिए संपूर्ण मैन्युअल</p>
+        <div style="background: var(--primary); color: white; padding: 8px 25px; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 10px;">● Live & Fully Functional</div>
+        <br>
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-btn">Download Now 📥</a>
+    </div>
 
-    <div class="container">
-        <h1>LocalWork</h1>
-        <p class="app-tagline">Connect. Work. Grow.</p>
+    <p style="text-align: center; font-size: 18px;"><b>LocalWork</b> एक ऐसा प्लेटफॉर्म है जहाँ आप दो भूमिकाएं निभा सकते हैं: या तो आप अपना हुनर बेचकर **पैसा कमाएं**, या अपनी ज़रूरत के लिए **सही वर्कर ढूंढें**।</p>
 
-        <!-- TOP DOWNLOAD BUTTON -->
-        <div class="download-container">
-            <p style="margin-bottom: 15px; font-weight: bold; color: #333;">आधिकारिक ऐप यहाँ से डाउनलोड करें</p>
-            <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store Icon">
-                <div class="btn-text">
-                    <small>GET IT ON</small>
-                    <b>Google Play</b>
-                </div>
-            </a>
-        </div>
+    <!-- SECTION 1: COMMON START -->
+    <h2>चरण 1: रजिस्ट्रेशन और स्मार्ट सेटअप (सभी के लिए)</h2>
+    <div class="step-container">
+        <h3>● लॉगिन कैसे करें?</h3>
+        <p>ऐप खोलें और <b>Google One-Tap</b> या <b>Phone OTP</b> से जुड़ें। यह सुरक्षित है और आपकी पहचान पक्की करता है।</p>
+        
+        <h3>● स्मार्ट पिनकोड डिटेक्शन</h3>
+        <p>लॉगिन के बाद ऐप आपकी लोकेशन मांगेगी। <span class="highlight">खास बात:</span> हमने इसे सरल बनाया है। अगर आपने परमिशन मना की है, तो स्क्रीन पर ही <b>"Allow"</b> का बटन दिखेगा। इससे आपका पिनकोड खुद ही सेट हो जाएगा ताकि आपको केवल आपके पास का काम दिखे।</p>
+        <div class="screenshot-placeholder">Login & Location Permission Screens</div>
+    </div>
 
-        <p>नमस्ते! <strong>LocalWork</strong> ऐप को आपकी जरूरतों और सुरक्षा को ध्यान में रखकर बनाया गया है। यह भारत का अपना प्लेटफॉर्म है जहाँ आप आसानी से काम दे सकते हैं या काम पा सकते हैं।</p>
+    <div style="text-align: center;">
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-btn">अभी डाउनलोड करें 📲</a>
+    </div>
 
-        <h2>🚀 बेहतरीन सुविधाएं (Key Features)</h2>
+    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
 
-        <div class="feature-card">
-            <strong>👷 Workers (काम):</strong> अपने इलाके के अनुभवी प्लंबर, इलेक्ट्रिशियन, पेंटर और 30+ कैटेगरी के कारीगरों को खोजें। उनकी प्रोफाइल और रेटिंग देखें।
-        </div>
+    <!-- SECTION 2: FOR WORKERS -->
+    <div class="worker-section">
+        <h2 style="margin-top: 0; color: #1b5e20;"><span class="badge" style="background: var(--accent);">OPTION A</span> वर्कर के रूप में रजिस्टर करें (पैसा कमाएं)</h2>
+        <p>यदि आप एक प्लंबर, ड्राइवर, बिजली मिस्त्री, या किसी भी हुनर के मालिक हैं, तो ये स्टेप्स फॉलो करें:</p>
+        
+        <h3>1. "I am a Worker" स्विच ऑन करें</h3>
+        <p>अपनी प्रोफाइल में जाएं और **"I am a Worker"** बटन को दबाएं। इससे आप वर्कर लिस्ट में शामिल होने के लिए तैयार हो जाएंगे।</p>
+        
+        <h3>2. अपना हुनर और रेट भरें</h3>
+        <ul>
+            <li>अपनी <b>Category</b> चुनें (जैसे: Carpenter, Delivery, Cook)।</li>
+            <li>अपनी <b>Skills</b> (जैसे: फर्नीचर बनाना, पोलिश करना) और **अनुभव (Experience)** लिखें।</li>
+            <li>अपना <b>Expected Rate</b> (दिहाड़ी या प्रति घंटा रेट) लिखें ताकि ग्राहक को अंदाज़ा रहे।</li>
+        </ul>
+        
+        <h3>3. डिजिटल आईडी कार्ड और पेमेंट</h3>
+        <p>प्रोफाइल पूरी होते ही आप अपना **Digital ID Card** देख सकते हैं। अपना **UPI ID** डालना न भूलें ताकि ऐप आपके लिए पेमेंट क्यूआर कोड बना सके।</p>
+        <div class="screenshot-placeholder">Worker Profile Setup & ID Card Screen</div>
+    </div>
 
-        <div class="feature-card">
-            <strong>💼 Job (नौकरी):</strong> अगर आपको स्टाफ की जरूरत है, तो यहाँ जॉब पोस्ट करें। काम ढूंढने वाले सीधे आपसे संपर्क करेंगे।
-        </div>
+    <!-- SECTION 3: FOR EMPLOYERS -->
+    <div class="employer-section">
+        <h2 style="margin-top: 0; color: #b71c1c;"><span class="badge" style="background: var(--employer);">OPTION B</span> जॉब पोस्ट करें (काम करवाएं)</h2>
+        <p>यदि आपको अपने घर या ऑफिस के लिए किसी वर्कर की ज़रूरत है, तो आप यह करें:</p>
+        
+        <h3>1. "Post a Job" बटन पर क्लिक करें</h3>
+        <p>नीचे दिए गए **(+)** या **Post** बटन पर जाएं। यहाँ आप बता सकते हैं कि आपको किस तरह के व्यक्ति की तलाश है।</p>
 
-        <div class="feature-card">
-            <strong>👤 Digital ID Card:</strong> प्रोफाइल पूरी करते ही आपको मिलता है एक शानदार डिजिटल पहचान पत्र, जिसे आप कहीं भी शेयर कर सकते हैं।
-        </div>
-
-        <div class="feature-card">
-            <strong>🎙️ Smart Voice Search:</strong> अब टाइप करने की जरूरत नहीं! बस माइक बटन दबाएं और जो चाहिए वो बोलकर तुरंत खोजें।
-        </div>
-
-        <div class="feature-card">
-            <strong>💸 QR Payments:</strong> सुरक्षित पेमेंट लेने के लिए अपना UPI QR कोड जनरेट करें और सीधे बैंक खाते में पैसे रिसीव करें।
-        </div>
-
-        <div class="feature-card">
-            <strong>💬 Direct Connect:</strong> बिना नंबर सेव किए वर्कर या मालिक को सीधे व्हाट्सएप (WhatsApp) मैसेज भेजें या कॉल करें।
-        </div>
-
-        <div class="feature-card">
-            <strong>🚫 User Safety:</strong> गलत व्यवहार करने वाले यूज़र्स को ब्लॉक या रिपोर्ट करें। आपकी सुरक्षा हमारी पहली प्राथमिकता है।
-        </div>
-
-        <h2>📖 इस्तेमाल कैसे करें?</h2>
-        <ul class="step-list">
-            <li data-step="1"><strong>लॉगिन:</strong> मोबाइल OTP या गूगल के जरिए सुरक्षित साइन-इन करें।</li>
-            <li data-step="2"><strong>लोकेशन:</strong> अपना <strong>Pincode</strong> डालें ताकि आपके नजदीकी काम दिख सकें।</li>
-            <li data-step="3"><strong>प्रोफाइल:</strong> अपनी जानकारी भरें और प्रोग्रेस बार को <strong>100%</strong> पूरा करें।</li>
-            <li data-step="4"><strong>संपर्क:</strong> पसंद आने पर सीधे <strong>'Call'</strong> या <strong>'WhatsApp'</strong> बटन दबाएं।</li>
+        <h3>2. काम की जानकारी दें</h3>
+        <ul>
+            <li><b>Title:</b> जैसे - "घर की पेंटिंग के लिए 2 पेंटर चाहिए"।</li>
+            <li><b>Description:</b> काम की पूरी जानकारी लिखें।</li>
+            <li><b>Budget/Rate:</b> आप कितना पैसा दे सकते हैं, वह लिखें।</li>
+            <li><b>Address:</b> जहाँ काम होना है, वहां का पता और पिनकोड डालें।</li>
         </ul>
 
-        <!-- BOTTOM DOWNLOAD BUTTON -->
-        <div class="download-container" style="background: #f0f4ff; border-style: solid;">
-            <p style="margin-bottom: 15px; font-weight: bold; color: #1E3C72;">आज ही जुड़ें और अपनी कमाई बढ़ाएं!</p>
-            <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-button" style="background: #1E3C72;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store Icon">
-                <div class="btn-text">
-                    <small>DOWNLOAD NOW</small>
-                    <b>Google Play</b>
-                </div>
-            </a>
-        </div>
-
-        <p class="footer">LocalWork: आत्मनिर्भर भारत की एक नई पहचान।<br><strong>Developed by: RS GULSHAN PRAJAPATI (Gulshan Digital Zone)</strong></p>
+        <h3>3. पोस्ट पब्लिश करें</h3>
+        <p>पोस्ट करते ही आपका काम "Jobs" टैब में दिखने लगेगा और आसपास के वर्कर आपको कॉल या चैट करेंगे।</p>
+        <div class="screenshot-placeholder">Job Posting Form & Post Success Screen</div>
     </div>
-<script>
-  async function loadFragment(url, targetId) {
-    try {
-      const res = await fetch(url, { mode: 'cors' });
-      if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-      const html = await res.text();
-      const el = document.getElementById(targetId);
-      if (!el) throw new Error(`Target element #${targetId} not found`);
-      el.innerHTML = html;
-      console.log(`Loaded ${url} → #${targetId}`);
-    } catch (err) {
-      console.error(`Error loading ${url}:`, err);
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.innerHTML = `<div style="padding:12px; background:#fff4f4; color:#900; border:1px solid #f5c2c2;">
-          Error loading content. Check console (Ctrl+Shift+J).
-        </div>`;
-      }
-    }
-  }
 
-  // use correct paths — change if filenames अलग हैं
-  // अगर Header.html और footer.html same site पर हैं तो relative path बेहतर है
-  loadFragment('/Header.html', 'site-header');
-  loadFragment('/footer.html', 'site-footer');
-</script>
-  
-<div id="site-footer"></div>
+    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+    <!-- SECTION 4: DISCOVERY & INTERACTION -->
+    <h2>चरण 4: एक-दूसरे को ढूंढें और संपर्क करें</h2>
+    <div class="step-container">
+        <h3>● स्मार्ट सर्च (Voice & Text)</h3>
+        <p>ऊपर बने माइक को दबाकर बोलें—<i>"मुझे मिस्त्री चाहिए"</i> या <i>"गाड़ी चलाने वाला"</i>। ऐप तुरंत सही प्रोफाइल दिखाएगी।</p>
+        
+        <h3>● संपर्क के आसान तरीके</h3>
+        <p>बिना नंबर सेव किए <b>WhatsApp</b> करें, सीधा **Call** करें, या ऐप के अंदर **Real-time Chat** करें। चैट में 'Quick Replies' का इस्तेमाल करके आप बिना टाइप किए भी बात कर सकते हैं।</p>
+        <div class="screenshot-placeholder">Search Results & Chat Interface Screens</div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.kamkaro" class="download-btn">Free Download 🚀</a>
+    </div>
+
+    <!-- SECTION 5: TRUST -->
+    <h2>चरण 5: भरोसा और सुरक्षा</h2>
+    <div class="step-container">
+        <h3>● ब्लू टिक और रेटिंग</h3>
+        <p>वर्कर को काम के बाद <b>Rating</b> दें। जब किसी को 5 अच्छे रिव्यु मिल जाते हैं, तो उसे ऐप की तरफ से <b>Verified Blue Tick</b> मिलता है।</p>
+
+        <h3>● ब्लॉक और रिपोर्ट</h3>
+        <p>किसी भी गलत व्यवहार पर आप यूजर को तुरंत **Block** या **Report** कर सकते हैं।</p>
+    </div>
+
+    <!-- Phase 6: ADMIN -->
+    <div class="step-container" style="background: #e3f2fd; border-color: #1976d2;">
+        <h3 style="margin-top: 0; color: #0d47a1;">🛡️ एडमिन (प्रशासक) की भूमिका</h3>
+        <p>एडमिन किसी भी प्रोफाइल या जॉब पोस्ट को एडिट कर सकता है। अगर कोई गलत जानकारी है, तो उसे सुधारने की पूरी पावर एडमिन के पास है। एडमिन सर्च बार में सिर्फ नाम के 2 अक्षर लिखकर किसी को भी ढूंढ सकता है।</p>
+    </div>
+
+    <div class="footer">
+        <p><b>LocalWork (काम करो) - Connecting Skills, Building Future</b></p>
+        <p>Developed with ❤️ by: <b>RS GULSHAN PRAJAPATI</b></p>
+        <p>© 2026 Gulshan Digital Zone. आत्मनिर्भर भारत की एक अनोखी पहल।</p>
+    </div>
+</div>
+
 </body>
 </html>

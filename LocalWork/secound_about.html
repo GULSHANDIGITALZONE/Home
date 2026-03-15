@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalWork (काम करो) - User Manual & Guide</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; padding: 0; margin: 0; color: #333; background-color: #f0f2f5; }
+        .container { max-width: 1000px; margin: 30px auto; background: white; padding: 50px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        
+        /* Header & Banner */
+        .manual-header { text-align: center; background: linear-gradient(135deg, #1E3C72 0%, #2A5298 100%); color: white; padding: 40px; border-radius: 15px 15px 0 0; margin: -50px -50px 40px -50px; }
+        .manual-header h1 { margin: 0; font-size: 38px; text-transform: uppercase; letter-spacing: 1px; }
+        .manual-header p { font-size: 18px; opacity: 0.9; margin-top: 10px; }
+        
+        /* Sections */
+        h2 { color: #1E3C72; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 40px; display: flex; align-items: center; }
+        h2 span { background: #1E3C72; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 18px; }
+        
+        h3 { color: #2e7d32; margin-top: 25px; font-size: 22px; }
+        
+        /* Steps & Highlights */
+        .step-card { background: #f8faff; border: 1px solid #e1e8ed; padding: 25px; border-radius: 12px; margin-bottom: 20px; position: relative; }
+        .screenshot-placeholder { background: #eaeff5; border: 2px dashed #bdc3c7; color: #7f8c8d; text-align: center; padding: 40px; margin: 20px 0; border-radius: 8px; font-style: italic; }
+        
+        .tip { background: #fff9db; border-left: 5px solid #fcc419; padding: 15px; border-radius: 5px; margin: 20px 0; font-weight: 500; }
+        .important { color: #d32f2f; font-weight: bold; }
+        
+        /* Grid for Features */
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .feature-item { display: flex; align-items: flex-start; gap: 10px; }
+        .feature-item b { color: #1E3C72; }
+
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #eee; color: #777; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 20px; margin: 10px; }
+            .manual-header { margin: -20px -20px 30px -20px; padding: 20px; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Main Banner -->
+    <div class="manual-header">
+        <h1>LocalWork (काम करो)</h1>
+        <p>संपूर्ण यूजर मैन्युअल: ऐप को इस्तेमाल करना सीखें</p>
+    </div>
+
+    <p style="font-size: 18px; text-align: center;"><b>LocalWork</b> एक ऐसा प्लेटफॉर्म है जहाँ आप अपने आसपास के अनुभवी कारीगरों (Workers) को ढूंढ सकते हैं या अपने लिए नया काम (Jobs) खोज सकते हैं।</p>
+
+    <!-- SECTION 1 -->
+    <h2><span>1</span> ऐप में प्रवेश (Login & Setup)</h2>
+    <div class="step-card">
+        <h3>1.1 आसान लॉगिन</h3>
+        <p>ऐप को डाउनलोड करने के बाद आप दो तरीके से अपना अकाउंट बना सकते हैं:</p>
+        <ul>
+            <li><b>Google:</b> अपनी ईमेल आईडी के जरिए एक क्लिक में लॉगिन करें।</li>
+            <li><b>Mobile OTP:</b> अपना मोबाइल नंबर डालें और आए हुए कोड (OTP) से सुरक्षित जुड़ें।</li>
+        </ul>
+        <div class="screenshot-placeholder">[यहाँ लॉगिन स्क्रीन का स्क्रीनशॉट लगाएं]</div>
+        
+        <h3>1.2 लोकेशन और पिनकोड सेट करना</h3>
+        <p>ऐप को चलाने के लिए लोकेशन की अनुमति (Permission) दें। इससे ऐप अपने आप आपका <b>Pincode</b> ढूंढ लेगी और आपको आपके ही इलाके का काम दिखाएगी।</p>
+        <div class="tip">💡 <b>सुझाव:</b> अगर आप पिनकोड बदलना चाहते हैं, तो होम स्क्रीन पर बने 'Pincode' बॉक्स में मैन्युअल भी डाल सकते हैं।</div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2><span>2</span> काम और वर्कर कैसे ढूंढें? (Home & Search)</h2>
+    <div class="step-card">
+        <h3>2.1 मुख्य टैब (Tabs)</h3>
+        <p>स्क्रीन के ऊपर आपको दो टैब दिखेंगे:</p>
+        <div class="feature-grid">
+            <div class="feature-item">✅ <span><b>Workers:</b> यहाँ आपको प्लंबर, ड्राइवर, बिजली मिस्त्री आदि की प्रोफाइल दिखेगी।</span></div>
+            <div class="feature-item">✅ <span><b>Jobs:</b> यहाँ आपको शहर में निकले हुए नए काम (Jobs) की जानकारी मिलेगी।</span></div>
+        </div>
+        
+        <h3>2.2 आवाज़ से खोजें (Smart Voice Search)</h3>
+        <p>अगर आप टाइप नहीं करना चाहते, तो ऊपर बने **माइक (Microphone)** बटन को दबाएं और बोलें—जैसे: <i>"मुझे पेंटर चाहिए"</i>। ऐप तुरंत आपके लिए सही व्यक्ति ढूंढ लेगी।</p>
+        <div class="screenshot-placeholder">[यहाँ होम स्क्रीन और सर्च बार का स्क्रीनशॉट लगाएं]</div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2><span>3</span> संपर्क कैसे करें? (Communication)</h2>
+    <div class="step-card">
+        <p>जब आपको कोई प्रोफाइल पसंद आ जाए, तो आप उनसे 3 तरीके से बात कर सकते हैं:</p>
+        <ol>
+            <li><b>Call:</b> सीधे फोन मिलाकर बात करें।</li>
+            <li><b>WhatsApp:</b> बिना नंबर सेव किए व्हाट्सएप पर मैसेज भेजें।</li>
+            <li><b>Chat:</b> ऐप के अंदर ही सुरक्षित मैसेज भेजें।</li>
+        </ol>
+        <div class="tip">⭐ <b>खास फीचर:</b> चैट में हमने "Quick Replies" दिए हैं, जिससे आप बस एक बटन दबाकर पूछ सकते हैं—<i>"रेट क्या है?"</i> या <i>"कहाँ आना है?"</i>।</div>
+        <div class="screenshot-placeholder">[यहाँ चैट स्क्रीन का स्क्रीनशॉट लगाएं]</div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2><span>4</span> कारीगरों (Workers) के लिए खास सुविधाएं</h2>
+    <div class="step-card">
+        <h3>4.1 डिजिटल आईडी कार्ड (Digital ID Card)</h3>
+        <p>प्रोफाइल में जाकर आप अपना **Digital ID Card** देख सकते हैं। इसमें आपकी फोटो और रेटिंग होती है, जिसे आप ग्राहकों को दिखाकर भरोसा जीत सकते हैं।</p>
+        
+        <h3>4.2 अपना पेमेंट QR कोड बनाएं</h3>
+        <p>ऐप में अपना UPI आईडी डालें और ग्राहक से पैसे लेने के लिए अपना **QR Code** दिखाएं। पैसे सीधे आपके बैंक खाते में आएंगे।</p>
+        <div class="screenshot-placeholder">[यहाँ आईडी कार्ड और पेमेंट स्क्रीन का स्क्रीनशॉट लगाएं]</div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <h2><span>5</span> सुरक्षा और भरोसा (Trust & Safety)</h2>
+    <div class="step-card">
+        <h3>5.1 ब्लू टिक (Verified Badge)</h3>
+        <p>अगर किसी वर्कर को 5 से ज्यादा अच्छी रेटिंग मिलती है, तो उसे ऐप की तरफ से **Blue Verified Tick** दिया जाता है। इसका मतलब है कि वह एक भरोसेमंद कारीगर है।</p>
+        
+        <h3>5.2 ब्लॉक और रिपोर्ट</h3>
+        <p>अगर कोई यूजर आपको परेशान करे, तो आप उसे **Block** कर सकते हैं। इससे उसकी प्रोफाइल आपको दोबारा नहीं दिखेगी।</p>
+    </div>
+
+    <!-- SECTION 6 -->
+    <h2><span>6</span> एडमिन कंट्रोल (For Admin Only)</h2>
+    <div class="step-card" style="border-color: #ff9800;">
+        <p>एडमिन आईडी से आप किसी भी यूजर की प्रोफाइल सुधार सकते हैं या गलत जानकारी होने पर उसे हटा सकते हैं। एडमिन सर्च में सिर्फ नाम का पहला अक्षर लिखते ही रिजल्ट्स दिखने लगते हैं।</p>
+    </div>
+
+    <div class="footer">
+        <p><b>LocalWork (काम करो) - आत्मनिर्भर भारत की पहल</b></p>
+        <p>विकसित किया गया: <b>RS GULSHAN PRAJAPATI</b> द्वारा ❤️</p>
+        <p>© 2026 Gulshan Digital Zone. सर्वाधिकार सुरक्षित।</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -3,107 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Fruits Crush GDZ</title>
+    <title>Fruits Crush GDZ - Official Guide & Website</title>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
+        :root {
+            --primary: #6200ea;
+            --secondary: #1e3c72;
+            --accent: #FF9800;
+            --bg: #f8faff;
+            --white: #ffffff;
+        }
+        body { 
+            font-family: 'Poppins', sans-serif, 'Segoe UI'; 
+            line-height: 1.6; 
+            color: #333; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg); 
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .hero h1 { margin: 0; font-size: 2.8em; text-transform: uppercase; letter-spacing: 2px; }
+        .hero p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
+        
+        .container { max-width: 900px; margin: -40px auto 40px; background: var(--white); padding: 30px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        
+        .download-box {
+            text-align: center;
             padding: 20px;
-            background-color: #f4f7f9;
+            margin-bottom: 30px;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        .btn-download {
+            display: inline-block;
+            background: #000;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .btn-download:hover { transform: scale(1.05); background: #222; }
+
+        .section-title { 
+            color: var(--secondary); 
+            border-left: 8px solid var(--primary); 
+            padding-left: 15px; 
+            margin: 40px 0 20px; 
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .guide-card {
             background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #eef2f7;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #eef2f7;
             margin-bottom: 20px;
-        }
-        h1 { color: #1e3c72; margin: 0; }
-        h2 { color: #2a5298; border-left: 4px solid #1e3c72; padding-left: 10px; margin-top: 25px; }
-        p { margin: 10px 0; }
-        .feature-list { list-style: none; padding: 0; }
-        .feature-list li {
-            background: #e3f2fd;
-            margin: 8px 0;
-            padding: 12px;
-            border-radius: 8px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
-        .feature-list li::before {
-            content: "🌟";
-            margin-right: 10px;
+        .guide-card .icon { font-size: 3.5em; min-width: 70px; text-align: center; }
+        .guide-card h3 { color: var(--primary); margin: 0 0 10px 0; }
+        .guide-card p { margin: 0; font-size: 0.95em; color: #555; }
+        .step { background: #6200ea11; color: var(--primary); padding: 2px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8em; margin-right: 5px; }
+
+        .vip-tag { 
+            background: linear-gradient(to right, #FFD700, #FFA500); 
+            color: #000; 
+            padding: 5px 20px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            display: inline-block; 
+            font-size: 0.8em;
+            margin-bottom: 15px;
         }
-        .footer {
-            text-align: center;
+
+        .pro-tips {
+            background: linear-gradient(135deg, #6200ea 0%, #1e3c72 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 25px;
             margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 0.9em;
+        }
+        .pro-tips h2 { margin-top: 0; color: #FFD700; }
+        .pro-tips li { margin-bottom: 10px; }
+
+        .footer { 
+            text-align: center; 
+            margin-top: 50px; 
+            padding: 40px 20px; 
+            background: #f1f3f8;
             color: #666;
         }
-        .highlight { color: #d32f2f; font-weight: bold; }
     </style>
 </head>
 <body>
 
+<div class="hero">
+    <div class="vip-tag">💎 OFFICIAL GAME GUIDE</div>
+    <h1>Fruits Crush GDZ</h1>
+    <p>भारत का No.1 फ्रूट मैचिंग एडवेंचर!</p>
+</div>
+
 <div class="container">
-    <header>
-        <h1>Fruits Crush GDZ 🍎</h1>
-        <p>आपका पसंदीदा फ्रूट मैचिंग एडवेंचर!</p>
-    </header>
-
-    <section>
-        <h2>गेम के बारे में (About the Game)</h2>
-        <p><b>Fruits Crush GDZ</b> एक मज़ेदार और चुनौतीपूर्ण "Match-3" पहेली गेम है। यहाँ आपको रंग-बिरंगे रसीले फलों को मैच करना है, धमाके करने हैं और अगले लेवल्स तक पहुँचना है। चाहे आप फ्री टाइम में खेल रहे हों या अपने हाई स्कोर को चुनौती दे रहे हों, यह गेम आपको घंटों तक मनोरंजन प्रदान करेगा।</p>
-    </section>
-
-    <section>
-        <h2>मुख्य विशेषताएं (Key Features)</h2>
-        <ul class="feature-list">
-            <li><b>1000+ लेवल्स:</b> कभी न खत्म होने वाला मज़ा और हर लेवल पर नई चुनौती।</li>
-            <li><b>पावर-अप्स:</b> रॉकेट 🚀 और बम 💣 जैसे खास टूल्स जो मुश्किल लेवल्स को आसान बनाते हैं।</li>
-            <li><b>लकी स्पिन:</b> हर रोज़ अपनी किस्मत आज़माएं और मुफ्त सिक्के जीतें। 🎡</li>
-            <li><b>शानदार ग्राफिक्स:</b> ताज़ा फलों के सुंदर डिज़ाइन और स्मूथ एनीमेशन।</li>
-            <li><b>ऑफ़लाइन खेलें:</b> इंटरनेट नहीं है? कोई बात नहीं! आप कभी भी, कहीं भी खेल सकते हैं।</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>कैसे खेलें? (How to Play)</h2>
-        <p>1. एक ही तरह के 3 या उससे ज़्यादा फलों को एक साथ मिलाएँ (Match करें)।</p>
-        <p>2. खास कॉम्बो बनाने के लिए 4 या 5 फलों को मैच करें और <b>स्पेशल फल</b> पायें।</p>
-        <p>3. हर लेवल का एक 'टारगेट स्कोर' होता है, उसे सीमित मूव्स में पूरा करें।</p>
-        <p>4. मुश्किल समय में रॉकेट और बम का इस्तेमाल करें।</p>
-    </section>
-
-    <section>
-        <h2>डेवलपर (Developer)</h2>
-        <p>यह गेम <b>RS GULSHAN PRAJAPATI</b> द्वारा प्यार और मेहनत से बनाया गया है। हमारा लक्ष्य आपको बेहतरीन और सुरक्षित गेमिंग अनुभव प्रदान करना है।</p>
-    </section>
-
-    <section>
-        <h2>संपर्क करें (Contact Us)</h2>
-        <p>अगर आपके पास कोई सुझाव है या आपको गेम में कोई परेशानी आ रही है, तो हमें यहाँ मेल करें:</p>
-        <p>📧 ईमेल: <span class="highlight">gulshandigitalzone@gmail.com</span></p>
-        <p>🌐 वेबसाइट: <a href="https://gdz.services/" target="_blank">https://gdz.services/</a></p>
-    </section>
-
-    <div class="footer">
-        <p>&copy; 2026 Fruits Crush GDZ |</p>
-        <p>बनाने वाला: <b>RS GULSHAN PRAJAPATI</b></p>
-        <p>दिनांक: 14 फरवरी 2026</p>
+    <div class="download-box">
+        <p style="font-weight: bold;">क्या आप तैयार हैं धमाके के लिए? अभी डाउनलोड करें!</p>
+        <a href="https://play.google.com/store/apps/details?id=com.gdz.fruitscrushgdz" class="btn-download">
+            DOWNLOAD FROM GOOGLE PLAY 📥
+        </a>
     </div>
+
+    <h2 class="section-title">📖 गेम कैसे खेलें? (How to Play)</h2>
+    
+    <div class="guide-card">
+        <div class="icon">🍎</div>
+        <div>
+            <h3>बेसिक मैचिंग</h3>
+            <p><span class="step">Step 1</span> एक जैसे 3 या उससे ज्यादा फलों को स्वाइप करके मैच करें।</p>
+            <p><span class="step">Step 2</span> 4 मैच करने पर <b>रॉकेट</b> और 5 मैच करने पर <b>बम</b> बनता है!</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">🛠️ पावर-अप्स का इस्तेमाल (Using Power-ups)</h2>
+
+    <div class="guide-card">
+        <div class="icon">🔨</div>
+        <div>
+            <h3>हैमर (Hammer) का जादू</h3>
+            <p>जब कोई फल मैच न हो रहा हो और रुकावट बन रहा हो, तो <b>Hammer बटन</b> पर क्लिक करें और फिर उस फल पर टैप करें। वह तुरंत टूट जाएगा!</p>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <div class="icon">✋</div>
+        <div>
+            <h3>मैजिक हैंड (Magic Hand)</h3>
+            <p>बिना कोई मूव खराब किए किन्हीं भी दो पास वाले फलों को आपस में बदलना चाहते हैं? <b>Hand बटन</b> दबाएं, फिर पहले फल को और फिर दूसरे फल को चुनें।</p>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <div class="icon">🚀</div>
+        <div>
+            <h3>सुपर रॉकेट (Super Rocket)</h3>
+            <p>पूरी रो या कॉलम को साफ़ करने के लिए <b>Rocket बटन</b> दबाकर किसी भी खाली जगह या फल पर रखें। यह रॉकेट की तरह उड़कर सब क्लियर कर देगा।</p>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <div class="icon">🎡</div>
+        <div>
+            <h3>लकी स्पिन (Lucky Spin)</h3>
+            <p>सिक्के और पावर-अप्स खत्म हो गए? मुख्य स्क्रीन पर <b>LUCKY SPIN</b> पर जाएं और पहिया घुमाएं। हर दिन आपको एक फ्री चांस मिलता है!</p>
+        </div>
+    </div>
+
+    <div class="pro-tips">
+        <h2>💡 प्रो टिप्स (Pro Tips)</h2>
+        <ul>
+            <li><b>Combo बनाएं:</b> एक साथ कई मैच करने पर "Sweet!" और "Amazing!" रिवॉर्ड्स मिलते हैं जो आपका स्कोर डबल कर देते हैं।</li>
+            <li><b>सिक्के बचाएं:</b> मुश्किल लेवल्स के लिए सिक्के जोड़कर रखें ताकि आप Shop से एक्स्ट्रा Hammer खरीद सकें।</li>
+            <li><b>एड देखें:</b> अगर मूव्स खत्म हो जाएं, तो आप छोटा सा एड देखकर 5 एक्स्ट्रा मूव्स पा सकते हैं।</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title">👨‍💻 डेवलपर सपोर्ट</h2>
+    <div style="text-align: center; padding: 20px;">
+        <p>हमें गर्व है कि यह गेम पूरी तरह भारत में बना है। किसी भी समस्या के लिए हमें ईमेल करें:</p>
+        <p style="font-weight: bold; font-size: 1.2em; color: var(--primary);">gulshandigitalzone@gmail.com</p>
+        <a href="https://gdz.services/" style="color: #1e3c72; text-decoration: underline;">Visit GDZ Official Website</a>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Fruits Crush GDZ | All Rights Reserved</p>
+    <p>Made with ❤️ in India 🇮🇳</p>
+ 
 </div>
 
 </body>
 </html>
+

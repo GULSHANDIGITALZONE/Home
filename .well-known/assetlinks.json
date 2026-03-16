@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gdz.kamkaro",
+      "sha256_cert_fingerprints": [
+        "F5:14:67:59:6D:27:1F:CB:E8:B8:20:E6:0A:2C:3F:9B:17:7B:CB:03:9F:A5:EF:B1:52:05:80:C9:F7:3B:44:47"
+      ]
+    }
+  }
+]

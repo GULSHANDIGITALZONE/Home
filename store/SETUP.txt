@@ -76,6 +76,30 @@ WHAT YOU NEED TO MAKE IT REAL
    - actionUrl
    - features
 
+13. Firebase project create karo
+   Firebase Console me project banao.
+
+14. Authentication enable karo
+   Firebase Console → Authentication → Sign-in method
+   Enable:
+   - Google
+   - Phone
+
+15. Authorized domains add karo
+   Add your frontend domain:
+   - gdz.services
+   - your preview/local domain if needed
+
+16. Firebase config values copy karo
+   In `store-config.js`
+   Replace:
+   - firebase.apiKey
+   - firebase.authDomain
+   - firebase.projectId
+   - firebase.storageBucket
+   - firebase.messagingSenderId
+   - firebase.appId
+
 HOW TO RUN BACKEND
 
 1. Open terminal in `store/backend`

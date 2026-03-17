@@ -31,70 +31,70 @@
     :focus { outline: none; }
     a:focus, button:focus, input:focus { outline: 3px solid rgba(34,211,238,.18); outline-offset: 3px; border-radius: 8px; }
 
-    .container { width: min(1120px, 92vw); margin: 0 auto; }
-    header { position: sticky; top: 0; z-index: 50; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: linear-gradient(to bottom, rgba(13,17,23,.85), rgba(13,17,23,.35)); border-bottom: 1px solid rgba(255,255,255,.06); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); padding: 14px 0; }
-    .logo { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; }
-    .logo-badge { width:36px; height:36px; border-radius:12px; background: linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; box-shadow: var(--shadow); font-weight:800; color:#0b1020; overflow:hidden; }
-    .logo-badge img { width: 100%; height: 100%; object-fit: cover; display:block; }
-    .nav a { opacity:.95; padding:8px 12px; border-radius:12px; font-weight:600; font-size:14px; }
-    .nav a:hover { background: rgba(214, 170, 170, 0.04); }
-    .menu { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
-    .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); padding:10px 14px; border-radius:14px; color:#0b1020; font-weight:700; box-shadow: var(--shadow); }
+    .portfolio-app .container { width: min(1120px, 92vw); margin: 0 auto; }
+    .portfolio-app header { position: sticky; top: 0; z-index: 50; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); background: linear-gradient(to bottom, rgba(13,17,23,.85), rgba(13,17,23,.35)); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .portfolio-app .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); padding: 14px 0; }
+    .portfolio-app .logo { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; }
+    .portfolio-app .logo-badge { width:36px; height:36px; border-radius:12px; background: linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; box-shadow: var(--shadow); font-weight:800; color:#0b1020; overflow:hidden; }
+    .portfolio-app .logo-badge img { width: 100%; height: 100%; object-fit: cover; display:block; }
+    .portfolio-app .nav a { opacity:.95; padding:8px 12px; border-radius:12px; font-weight:600; font-size:14px; }
+    .portfolio-app .nav a:hover { background: rgba(214, 170, 170, 0.04); }
+    .portfolio-app .menu { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+    .portfolio-app .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); padding:10px 14px; border-radius:14px; color:#0b1020; font-weight:700; box-shadow: var(--shadow); }
 
-    .hero { padding: 96px 0 42px; }
-    .hero-wrap { display:grid; grid-template-columns: 1.15fr .85fr; gap:38px; align-items:center; }
-    .title { font-size: clamp(32px, 6vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing:-.5px; margin:0; }
-    .title .grad { background: linear-gradient(135deg, var(--brand), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .subtitle { color: var(--muted); margin-top: 14px; font-size: clamp(15px, 2.5vw, 18px); }
+    .portfolio-app .hero { padding: 96px 0 42px; }
+    .portfolio-app .hero-wrap { display:grid; grid-template-columns: 1.15fr .85fr; gap:38px; align-items:center; }
+    .portfolio-app .title { font-size: clamp(32px, 6vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing:-.5px; margin:0; }
+    .portfolio-app .title .grad { background: linear-gradient(135deg, var(--brand), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .portfolio-app .subtitle { color: var(--muted); margin-top: 14px; font-size: clamp(15px, 2.5vw, 18px); }
 
-    .hero-card { background: linear-gradient(180deg, rgba(34,211,238,.04), rgba(167,139,250,.03)); border:1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); margin-top: 20px; }
-    .badges { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
-    .chip { background: #0f172a; color:#cbd5e1; border: 1px solid rgba(255,255,255,.06); padding:8px 12px; border-radius: 999px; font-size: 13px; }
-    .quick { display:flex; gap:10px; margin-top: 16px; flex-wrap:wrap; }
-    .quick a { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:10px 14px; border-radius:12px; font-weight:700; }
+    .portfolio-app .hero-card { background: linear-gradient(180deg, rgba(34,211,238,.04), rgba(167,139,250,.03)); border:1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); margin-top: 20px; }
+    .portfolio-app .badges { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
+    .portfolio-app .chip { background: #0f172a; color:#cbd5e1; border: 1px solid rgba(255,255,255,.06); padding:8px 12px; border-radius: 999px; font-size: 13px; }
+    .portfolio-app .quick { display:flex; gap:10px; margin-top: 16px; flex-wrap:wrap; }
+    .portfolio-app .quick a { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:10px 14px; border-radius:12px; font-weight:700; }
 
-    .avatar-card { background: var(--panel); border:1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 16px; text-align:center; box-shadow: var(--shadow); }
-    .avatar img { width: 200px; height: 200px; margin: 8px auto 12px; border-radius: 24px; object-fit: cover; }
-    .socials { display:flex; justify-content:center; gap:10px; margin-top:8px; }
-    .socials a { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:8px 10px; border-radius:12px; font-size:14px; }
+    .portfolio-app .avatar-card { background: var(--panel); border:1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 16px; text-align:center; box-shadow: var(--shadow); }
+    .portfolio-app .avatar img { width: 200px; height: 200px; margin: 8px auto 12px; border-radius: 24px; object-fit: cover; }
+    .portfolio-app .socials { display:flex; justify-content:center; gap:10px; margin-top:8px; }
+    .portfolio-app .socials a { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:8px 10px; border-radius:12px; font-size:14px; }
 
-    section { padding: 54px 0; }
-    .section-title { font-size: 28px; font-weight: 800; margin-bottom: 18px; text-align: center; }
+    .portfolio-app section { padding: 54px 0; }
+    .portfolio-app .section-title { font-size: 28px; font-weight: 800; margin-bottom: 18px; text-align: center; }
 
-    .grid { display:grid; gap:16px; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-app .grid { display:grid; gap:16px; }
+    .portfolio-app .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .portfolio-app .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
-    .card { background: var(--panel); border: 1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
-    .card h3 { margin:8px 0 6px; font-size: 18px; }
-    .muted { color: var(--muted); font-size: 14px; }
+    .portfolio-app .card { background: var(--panel); border: 1px solid rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .portfolio-app .card h3 { margin:8px 0 6px; font-size: 18px; }
+    .portfolio-app .muted { color: var(--muted); font-size: 14px; }
 
-    .skills { display:flex; gap:10px; flex-wrap:wrap; }
-    .skill { background: #0b1220; border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius: 12px; font-weight:600; }
+    .portfolio-app .skills { display:flex; gap:10px; flex-wrap:wrap; }
+    .portfolio-app .skill { background: #0b1220; border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius: 12px; font-weight:600; }
 
-    .timeline { position:relative; padding-left: 18px; }
-    .timeline:before { content:""; position:absolute; left:3px; top:0; bottom:0; width:2px; background: linear-gradient(var(--brand), var(--accent)); opacity:.55; }
-    .t-item { position:relative; margin: 14px 0; }
-    .t-item:before { content:""; position:absolute; left:-2px; top:6px; width:10px; height:10px; border-radius:999px; background: var(--brand); box-shadow: 0 0 0 3px rgba(34,211,238,.12); }
+    .portfolio-app .timeline { position:relative; padding-left: 18px; }
+    .portfolio-app .timeline:before { content:""; position:absolute; left:3px; top:0; bottom:0; width:2px; background: linear-gradient(var(--brand), var(--accent)); opacity:.55; }
+    .portfolio-app .t-item { position:relative; margin: 14px 0; }
+    .portfolio-app .t-item:before { content:""; position:absolute; left:-2px; top:6px; width:10px; height:10px; border-radius:999px; background: var(--brand); box-shadow: 0 0 0 3px rgba(34,211,238,.12); }
 
-    .projects .card { display:flex; flex-direction:column; }
-    .thumb { aspect-ratio: 16/9; background: #0b1325; border-radius: 12px; border:1px solid rgba(255,255,255,.04); overflow:hidden; display:grid; place-items:center; font-size: 14px; color: var(--muted); }
-    .actions { display:flex; gap:8px; margin-top:auto; flex-wrap:wrap; }
-    .btn { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius: 12px; font-weight: 600; }
-    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--accent)); color:#0b1020; box-shadow: var(--shadow); }
+    .portfolio-app .projects .card { display:flex; flex-direction:column; }
+    .portfolio-app .thumb { aspect-ratio: 16/9; background: #0b1325; border-radius: 12px; border:1px solid rgba(255,255,255,.04); overflow:hidden; display:grid; place-items:center; font-size: 14px; color: var(--muted); }
+    .portfolio-app .actions { display:flex; gap:8px; margin-top:auto; flex-wrap:wrap; }
+    .portfolio-app .btn { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius: 12px; font-weight: 600; }
+    .portfolio-app .btn.primary { background: linear-gradient(135deg, var(--brand), var(--accent)); color:#0b1020; box-shadow: var(--shadow); }
 
-    form { display:grid; gap:12px; }
-    input, textarea { background:#0b1220; border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:12px 14px; color: var(--text); font-size:14px; }
-    textarea { min-height: 120px; }
+    .portfolio-app form { display:grid; gap:12px; }
+    .portfolio-app input, .portfolio-app textarea { background:#0b1220; border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:12px 14px; color: var(--text); font-size:14px; }
+    .portfolio-app textarea { min-height: 120px; }
 
     /* Responsive */
     @media (max-width: 900px) {
-      .hero { padding-top: 74px; }
-      .hero-wrap { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
-      .avatar img { width: 160px; height:160px; }
+      .portfolio-app .hero { padding-top: 74px; }
+      .portfolio-app .hero-wrap { grid-template-columns: 1fr; }
+      .portfolio-app .grid-3 { grid-template-columns: 1fr; }
+      .portfolio-app .grid-2 { grid-template-columns: 1fr; }
+      .portfolio-app .avatar img { width: 160px; height:160px; }
     }
 
     /* Loader */
@@ -153,10 +153,104 @@
       border-radius: 6px;
       z-index: 9999;
     }
+
+    .contact-admin-app {
+      --contact-bg:#51ffa8;
+      --contact-card:#0051ff;
+      --contact-muted:#9ca3af;
+      --contact-accent:#22d3ee;
+      --contact-radius:12px;
+      color:#e5e7eb;
+      background:var(--contact-bg);
+      padding:24px;
+    }
+    .contact-admin-app.contact-embed {
+      background: transparent;
+      padding: 0;
+      width: 100%;
+      min-width: 0;
+    }
+    .contact-admin-app.contact-embed .container {
+      margin: 0;
+    }
+    .portfolio-app #contact .grid.grid-2 {
+      align-items: start;
+    }
+    .portfolio-app #contact .contact-admin-app.contact-embed,
+    .portfolio-app #contact .contact-admin-app.contact-embed .container,
+    .portfolio-app #contact .contact-admin-app.contact-embed .grid,
+    .portfolio-app #contact .contact-admin-app.contact-embed .card {
+      width: 100%;
+      min-width: 0;
+    }
+    .contact-admin-app .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .contact-admin-app .brand{font-weight:800}
+    .contact-admin-app .admin-btn{background:linear-gradient(135deg,var(--contact-accent),#a78bfa);color:#071023;border:none;padding:10px 12px;border-radius:10px;cursor:pointer}
+    .contact-admin-app .container{max-width:100%;margin:10px auto}
+    .contact-admin-app .grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:100%;margin:0 auto}
+    .contact-admin-app .card{background:var(--contact-card);border-radius:var(--contact-radius);padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+    .contact-admin-app label{display:block;font-weight:700;margin-bottom:6px}
+    .contact-admin-app input,.contact-admin-app textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.04);background:#062452;color:var(--text);margin-bottom:12px}
+    .contact-admin-app textarea{min-height:140px}
+    .contact-admin-app .btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);padding:10px 12px;border-radius:10px;color:var(--text);cursor:pointer}
+    .contact-admin-app .btn.primary{background:linear-gradient(135deg,var(--contact-accent),var(--contact-accent));color:#071023}
+    .contact-admin-app .muted{color:var(--contact-muted);font-size:14px}
+    .contact-admin-app .admin-panel{display:none}
+    .contact-admin-app table{width:100%;border-collapse:collapse;display:block;overflow-x:auto}
+    .contact-admin-app th,.contact-admin-app td{padding:10px;border-bottom:1px solid rgba(255,255,255,.03);text-align:left;vertical-align:top;word-break:break-word}
+    .contact-admin-app .small{font-size:13px;color:var(--contact-muted)}
+    .contact-admin-app .top-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .contact-admin-app .login-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:9999}
+    .contact-admin-app .modal-card,
+    .contact-admin-app .inline-login-box{width:360px;max-width:100%;background:var(--contact-card);padding:18px;border-radius:12px}
+    .contact-admin-app .close-x{float:right;cursor:pointer}
+    .contact-admin-app .status{margin-top:10px}
+    .contact-admin-app .hidden-card{display:none !important}
+    .toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      padding: 14px 22px;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 99999;
+      transition: opacity 260ms ease, transform 260ms ease;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+    .toast.success { background: #16a34a; }
+    .toast.error { background: #dc2626; }
+
+    @media (max-width:600px){
+      .contact-admin-app{padding:12px}
+      .contact-admin-app .container{margin:12px auto}
+      .contact-admin-app .grid{max-width:100%;margin:0}
+      .contact-admin-app .card{padding:12px}
+      .contact-admin-app .top{align-items:flex-start}
+      .contact-admin-app .top-right{width:100%;justify-content:flex-start}
+      .contact-admin-app input,.contact-admin-app textarea{padding:8px;font-size:16px}
+      .contact-admin-app table{font-size:12px}
+      .contact-admin-app th,.contact-admin-app td{padding:6px}
+      .contact-admin-app .btn{padding:8px 10px;font-size:12px}
+      .contact-admin-app .modal-card{width:90vw;max-width:360px}
+      .contact-admin-app .inline-login-box{width:100%}
+      .toast{font-size:15px;padding:12px 16px}
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="portfolio-app">
 
   <!-- Loading overlay -->
   <div id="loading-overlay" role="status" aria-label="Loading content">
@@ -331,18 +425,83 @@
       <div class="container">
         <h2 class="section-title">Contact</h2>
         <div class="grid grid-2">
-          <div class="card">
-            <form name="contact" >
-              <!-- <button onclick="openFull()">⛶</button>
-              <script>
-                   function openFull() {
-                window.open("https://developercontect.netlify.app/", "_blank");
-                       }
-              </script> -->
+          <div class="contact-admin-app contact-embed">
+            <div class="container">
+              <div class="grid">
+                <div id="contactCard" class="card">
+                  <h2>
+                    <div class="top container">
+                      <div class="brand">Contact Form</div>
+                      <div class="top-right">
+                        <a rel="noopener noreferrer" target="_blank" href="./feedback.html"> <button class="admin-btn">⛶</button></a>
+                        <button id="adminBtn" class="admin-btn">Admin Login</button>
+                      </div>
+                    </div>
+                  </h2>
 
-             <iframe width="100%" height="650px" src="https://gdz.services/developer/feedback" frameborder="0"></iframe>
-            </form>
-      
+                  <p class="muted">You can ask any question without any hesitation, the information you provide will be stored in our database, please do not use wrong words.</p>
+
+                  <form id="contactForm" novalidate>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" required placeholder="Enter Name" />
+
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="number" required placeholder="+91 9876543210" pattern="^(\+\d{1,3}\s?)?\d{6,15}$" title="Valid number: +91 9876543210 or 9876543210"/>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Please explain in detail in what regard you need help."></textarea>
+
+                    <button type="submit" class="btn primary">Send Message</button>
+                    <div id="formStatus" class="status small" role="status" aria-live="polite"></div>
+                  </form>
+
+                  <hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,.04)" />
+                  <p class="small muted">People outside India are requested to include their email ID in the message.</p>
+                </div>
+
+                <div id="adminCard" class="card hidden-card">
+                  <div id="adminArea">
+                    <h3>Admin Panel</h3>
+                    <p class="muted">Last Update <span id="datetime"></span></p>
+                    
+                  <div id="adminLoggedOut">
+                      <div id="inlineLoginForm" class="inline-login-box hidden-card" style="margin-top:12px">
+                     
+                        <p class="small muted">Use your admin username & password.</p>
+                        <div style="margin-top:10px">
+                          <label for="adminUser">Username</label>
+                          <input id="adminUser" />
+                          <label for="adminPass">Password</label>
+                          <input id="adminPass" type="password" />
+                          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+                            <button id="loginSubmit" class="btn primary">Login</button>
+                            <button id="loginCancel" class="btn">Cancel</button>
+                          </div>
+                          <div id="loginStatus" class="small status"></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div id="adminLoggedIn" class="admin-panel">
+                      <div style="display:flex;justify-content:space-between;align-items:center">
+                        <strong>Messages</strong>
+                        <div>
+                          <button style="background-color: rgb(0, 3, 163);" id="refreshBtn" class="btn">Refresh</button>
+                          <button style="background-color: rgb(0, 3, 163);" id="toggleDeletedBtn" class="btn">Deleted</button>
+                          <button style="background-color: rgb(255, 0, 0);" id="logoutBtn" class="btn">Logout</button>
+                        </div>
+                      </div>
+                      <div style="margin-top:12px;overflow:auto;max-height:420px">
+                        <table>
+                          <thead><tr><th>Name</th><th>Phone</th><th>Message</th><th class="small">Received</th></tr></thead>
+                          <tbody id="messagesTbody"><tr><td colspan="4" class="small muted">No messages loaded.</td></tr></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="card">
@@ -351,8 +510,22 @@
             <p class="muted">Phone: +91-6299050695</p>
             <div class="badges">
               <a class="chip" href="https://wa.me/916299050695" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-              <a class="chip" href="https://t.me/yourid" target="_blank" rel="noopener noreferrer">Telegram</a>
-              <a class="chip" href="https://youtube.com/@yourid" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a class="chip" href="https://t.me/agbp95" target="_blank" rel="noopener noreferrer">Telegram</a>
+              <a class="chip" href="https://www.youtube.com/@GULSHANDIGITALZONE" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </div>
+            <div class="mt-8">
+              <p class="muted">Feedback</p>
+              <form id="feedbackForm">
+                <input id="inputField" name="inputField" placeholder="सुझाव या फीडबैक दें" required>
+                <button type="submit" class="btn primary">Send</button>
+              </form>
+            </div>
+            <div class="mt-8">
+              <p class="muted">Subscribe</p>
+              <form id="customForm">
+                <input type="email" id="Subscribe.Id" name="inputField" placeholder="Enter email" required>
+                <button type="submit" class="btn primary">Subscribe</button>
+              </form>
             </div>
           </div>
         </div>
@@ -397,7 +570,348 @@
   loadFragment('/footer.html', 'site-footer');
 </script>
   
+
+<!-- secound project code yaha hain........................................ -->
+  </div>
 <div id="site-footer"></div>
 
+  <!-- Toast elements -->
+  <div id="toastSuccess" class="toast success" role="status" aria-live="polite" style="display:none"></div>
+  <div id="toastError" class="toast error" role="alert" aria-live="assertive" style="display:none"></div>
+
+  <script>
+    /********** CONFIG: set your backend URL here **********/
+    const API_BASE = 'https://contact-yhxq.onrender.com'; // backend express server
+    console.log('API_BASE:', API_BASE);
+
+    const qs = (s) => document.querySelector(s);
+
+    // Toast helpers
+    let toastTimer = null;
+    function showToast(type, msg, ms = 2000) {
+      const successEl = document.getElementById('toastSuccess');
+      const errorEl = document.getElementById('toastError');
+      clearTimeout(toastTimer);
+      if (type === 'success') {
+        errorEl.style.display = 'none';
+        successEl.textContent = msg;
+        successEl.style.display = 'inline-block';
+        // small delay to allow transition
+        requestAnimationFrame(()=> successEl.classList.add('show'));
+        toastTimer = setTimeout(()=> {
+          successEl.classList.remove('show');
+          setTimeout(()=> successEl.style.display = 'none', 300);
+        }, ms);
+      } else {
+        successEl.style.display = 'none';
+        errorEl.textContent = msg;
+        errorEl.style.display = 'inline-block';
+        requestAnimationFrame(()=> errorEl.classList.add('show'));
+        toastTimer = setTimeout(()=> {
+          errorEl.classList.remove('show');
+          setTimeout(()=> errorEl.style.display = 'none', 300);
+        }, ms);
+      }
+    }
+
+    // Form submit -> POST to backend
+    const form = qs('#contactForm');
+    const status = qs('#formStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Please wait Sending...';
+      try {
+        const payload = {
+          name: form.name.value.trim(),
+          phone: form.phone.value.trim(),
+          message: form.message.value.trim()
+        };
+        if (!payload.name || !payload.phone || !payload.message) {
+          status.textContent = 'Please fill all fields.'; 
+          status.style.color = '#fecaca';
+          showToast('error', 'Please fill all fields.');
+          return;
+        }
+
+        // send request
+        const res = await fetch(API_BASE + '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        // read response text first, then try to parse JSON (handles non-JSON errors too)
+        const text = await res.text().catch(()=>null);
+        let body = null;
+        try { body = text ? JSON.parse(text) : null; } catch(e) { body = null; }
+
+        // success if HTTP 2xx (res.ok) OR server returned success flag
+        if (res.ok || (body && body.success)) {
+          // show centered green toast for 2 seconds
+          showToast('success', 'Your message has been successfully received.', 5000);
+          status.textContent = 'Your message has been successfully received.';
+          status.style.color = '#dcfce7';
+          form.reset();
+        } else {
+          // show server message if available, else response text, else generic
+          const errMsg = (body && (body.error || body.message)) || text || 'Send failed.';
+          status.textContent = errMsg;
+          status.style.color = '#fecaca';
+          showToast('error', errMsg, 2000);
+        }
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Error sending message. Check console.';
+        status.style.color = '#fecaca';
+        showToast('error', 'Error sending message. Check console.', 2000);
+      }
+    });
+
+    // Admin login & fetch messages (Basic Auth)
+    const adminBtn = qs('#adminBtn');
+    const inlineLoginForm = qs('#inlineLoginForm');
+    const loginCancel = qs('#loginCancel');
+    const loginSubmit = qs('#loginSubmit');
+    const loginStatus = qs('#loginStatus');
+    const adminLoggedIn = qs('#adminLoggedIn');
+    const adminLoggedOut = qs('#adminLoggedOut');
+    const contactCard = qs('#contactCard');
+    const adminCard = qs('#adminCard');
+    const messagesTbody = qs('#messagesTbody');
+    const refreshBtn = qs('#refreshBtn');
+    const logoutBtn = qs('#logoutBtn');
+
+    let currentAuth = null; // base64 string
+
+    function showLoginPanel(){
+      if (!inlineLoginForm) return;
+      contactCard.classList.add('hidden-card');
+      adminCard.classList.remove('hidden-card');
+      adminLoggedIn.style.display = 'none';
+      adminLoggedOut.style.display = 'block';
+      inlineLoginForm.classList.remove('hidden-card');
+      loginStatus.textContent = '';
+    }
+    function hideLoginPanel(){
+      if (!inlineLoginForm) return;
+      inlineLoginForm.classList.add('hidden-card');
+      if (!currentAuth) {
+        adminCard.classList.add('hidden-card');
+        contactCard.classList.remove('hidden-card');
+      }
+    }
+
+    adminBtn.addEventListener('click', showLoginPanel);
+    loginCancel.addEventListener('click', hideLoginPanel);
+
+    function escapeHtml(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    // New: validate credentials by actually fetching messages, and throw on 401
+    async function loadMessagesWithAuth(auth, showDeleted=false) {
+      const url = API_BASE + '/api/messages' + (showDeleted ? '?deleted=true' : '');
+      const res = await fetch(url, {
+        headers: { 'Authorization': 'Basic ' + auth }
+      });
+      if (res.status === 401) {
+        throw new Error('Auth failed');
+      }
+      if (!res.ok) {
+        const txt = await res.text().catch(()=>null);
+        throw new Error('Fetch failed: ' + (txt || res.status));
+      }
+      const data = await res.json();
+      return data;
+    }
+
+    async function login(username, password) {
+      const auth = btoa(username + ':' + password);
+      const messages = await loadMessagesWithAuth(auth); // will throw if 401 or error
+      currentAuth = auth;
+      return messages;
+    }
+
+    function renderMessages(data, showDeleted=false) {
+      if (!Array.isArray(data) || data.length === 0) {
+        messagesTbody.innerHTML = '<tr><td colspan="4" class="small muted">No messages found.</td></tr>';
+        return;
+      }
+      messagesTbody.innerHTML = data.map(m => {
+        const when = m.createdAt ? new Date(m.createdAt).toLocaleString() : '';
+        const safeMsg = (m.message||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const phone = m.phone || m.email || '';
+        const id = m._id || m.id || '';
+        const actionBtn = showDeleted
+          ? `<button style="background-color: green;" class="btn" onclick="restoreMessage('${id}')">♻️ Restore</button>`
+          : `<button style="background-color: rgb(255, 0, 0);"  class="btn btn-delete" onclick="deleteMessage('${id}')">🗑️ Delete</button>`;
+        return `<tr>
+          <td>${escapeHtml(m.name||'')}</td>
+          <td>${escapeHtml(phone)}</td>
+          <td style="max-width:360px;white-space:pre-wrap">${safeMsg}</td>
+          <td class="small">${when}<div style="margin-top:6px">${actionBtn}</div></td>
+        </tr>`;
+      }).join('');
+    }
+
+    let showingDeleted = false;
+    async function loadMessages() {
+      if (!currentAuth) return;
+      messagesTbody.innerHTML = '<tr><td colspan="4" class="small muted">Loading...</td></tr>';
+      try {
+        const data = await loadMessagesWithAuth(currentAuth, showingDeleted);
+        renderMessages(data, showingDeleted);
+      } catch (err) {
+        console.error(err);
+        messagesTbody.innerHTML = '<tr><td colspan="4" class="small muted">Error loading messages (see console)</td></tr>';
+        if (err.message && err.message.toLowerCase().includes('auth')) {
+          loginStatus.textContent = 'Auth failed';
+          logout();
+        }
+      }
+    }
+
+    function logout(){
+      currentAuth = null;
+      adminLoggedIn.style.display='none';
+      adminLoggedOut.style.display='block';
+      hideLoginPanel();
+    }
+
+    loginSubmit.addEventListener('click', async () => {
+      const user = qs('#adminUser').value.trim();
+      const pass = qs('#adminPass').value;
+      if (!user || !pass) { loginStatus.textContent = 'Enter credentials'; return; }
+      loginStatus.textContent = 'Logging in...';
+      loginSubmit.disabled = true;
+      try {
+        const messages = await login(user, pass);
+        renderMessages(messages);
+        loginStatus.textContent = '';
+        hideLoginPanel();
+        adminLoggedIn.style.display = 'block';
+        adminLoggedOut.style.display = 'none';
+        contactCard.classList.add('hidden-card');
+        adminCard.classList.remove('hidden-card');
+      } catch (err) {
+        console.error('Login error:', err);
+        loginStatus.textContent = 'Login failed — wrong credentials or server error';
+      } finally {
+        loginSubmit.disabled = false;
+      }
+    });
+
+    refreshBtn.addEventListener('click', () => loadMessages());
+    qs('#toggleDeletedBtn').addEventListener('click', () => {
+      showingDeleted = !showingDeleted;
+      qs('#toggleDeletedBtn').textContent = showingDeleted ? '↩️ Active' : '🗑️ Deleted';
+      loadMessages();
+    });
+
+    // Delete and restore helpers
+    async function deleteMessage(id) {
+      if (!currentAuth) return alert('Login first');
+      if(!confirm('Delete this message?')) return;
+      try {
+        const res = await fetch(API_BASE + '/api/messages/' + id, { method: 'DELETE', headers: { 'Authorization': 'Basic ' + currentAuth } });
+        const txt = await res.text().catch(()=>null);
+        if (!res.ok) {
+          console.error('Delete failed', res.status, txt);
+          return alert('Delete failed: ' + (txt || res.status));
+        }
+        loadMessages();
+      } catch (err) {
+        console.error('Delete error', err);
+        alert('Delete error. See console.');
+      }
+    }
+
+    async function restoreMessage(id) {
+      if (!currentAuth) return alert('Login first');
+      const res = await fetch(API_BASE + '/api/messages/' + id + '/restore', { method: 'POST', headers: { 'Authorization': 'Basic ' + currentAuth } });
+      if (!res.ok) return alert('Restore failed');
+      loadMessages();
+    }
+    logoutBtn.addEventListener('click', () => { logout(); messagesTbody.innerHTML = '<tr><td colspan="4" class="small muted">Logged out</td></tr>'; });
+
+    // Allow pressing Enter inside password to submit
+    qs('#adminPass').addEventListener('keydown', (e)=>{ if(e.key==='Enter') loginSubmit.click(); });
+
+    // initial state
+    adminLoggedIn.style.display='none';
+    adminLoggedOut.style.display='block';
+    hideLoginPanel();
+
+  </script>
+  <!-- // Latest time ke liye ............................................................................ -->
+  <script>
+  function updateDateTime() {
+    let now = new Date();
+
+    let dd = String(now.getDate()).padStart(2, '0');
+    let mm = String(now.getMonth() + 1).padStart(2, '0'); 
+    let yyyy = now.getFullYear();
+
+    let hh = String(now.getHours()).padStart(2, '0');
+    let min = String(now.getMinutes()).padStart(2, '0');
+
+    let formatted = dd + "/" + mm + "/" + yyyy + " : " + hh + ":" + min;
+
+    document.getElementById("datetime").innerText = formatted;
+  }
+
+  updateDateTime(); // page load par set hoga
+</script>
+        <script>
+      // <!-- //suscriber input............................................................................... -->
+  document.getElementById('customForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      // Get input value
+      const inputValue = document.getElementById('Subscribe.Id').value;
+
+      // Google Form action URL and field name (entry ID)
+      const googleFormURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdqVwXLPzFj1Tl2ZQVxpJN8TLWTtkX0XMFOtZBZgeCxfGJDug/formResponse"; // Replace with your form's action URL
+      const formFieldName = "entry.1325797992"; // Replace with your form's input field name (entry ID)
+
+      // Create a form submission URL
+      const submissionURL = `${googleFormURL}?${formFieldName}=${encodeURIComponent(inputValue)}`;
+
+      // Submit data to Google Form
+      fetch(submissionURL, { method: "POST", mode: "no-cors" })
+          .then(() => {
+              alert("Thank you for subscribing.");
+          })
+          .catch(() => {
+              alert("please enter valid email.");
+          });
+          
+  });
+
+
+//   <!-- //Any suggestion or comment or feedback............................................................................... -->
+  
+   document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+       e.preventDefault(); // Prevent default form submission
+
+       // Get input value
+       const inputValue = document.getElementById('inputField').value;
+
+       // Google Form action URL and field name (entry ID)
+       const googleFormURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScZtNsBkcLQHIQ5u8yz6qsL82kRJ0RXhlaozfyReXz3xs8Uog/formResponse"; // Replace with your form's action URL
+       const formFieldName = "entry.1489761833"; // Replace with your form's input field name (entry ID)
+
+       // Create a form submission URL
+       const submissionURL = `${googleFormURL}?${formFieldName}=${encodeURIComponent(inputValue)}`;
+
+       // Submit data to Google Form
+       fetch(submissionURL, { method: "POST", mode: "no-cors" })
+           .then(() => {
+               alert("Thank you for feedback.");
+           })
+           .catch(() => {
+               alert("error submiting");
+           });
+           
+   });
+    </script>             
 </body>
 </html>

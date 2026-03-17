@@ -92,17 +92,49 @@
       </div>
 
       <form id="loginForm" class="form-grid">
-        <div class="field">
-          <label for="loginName">Full Name</label>
-          <input id="loginName" name="loginName" placeholder="Enter your full name" required>
+        <div class="auth-tabs">
+          <button class="btn btn-secondary auth-tab is-active" type="button" data-auth-tab="google">Google</button>
+          <button class="btn btn-secondary auth-tab" type="button" data-auth-tab="phone">Phone OTP</button>
+          <button class="btn btn-secondary auth-tab" type="button" data-auth-tab="simple">Simple</button>
         </div>
-        <div class="field">
-          <label for="loginEmail">Email</label>
-          <input id="loginEmail" name="loginEmail" type="email" placeholder="Enter your email" required>
+
+        <div class="auth-panel is-active" data-auth-panel="google">
+          <div class="auth-block">
+            <button id="googleLoginBtn" class="btn btn-primary auth-wide-btn" type="button">Continue with Google</button>
+          </div>
         </div>
-        <div class="modal-actions">
-          <button class="btn btn-secondary" type="button" id="cancelLoginBtn">Cancel</button>
-          <button class="btn btn-primary" type="submit">Login</button>
+
+        <div class="auth-panel" data-auth-panel="phone">
+          <div class="field">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" name="phoneNumber" type="tel" placeholder="+91 9876543210">
+          </div>
+          <div class="modal-actions auth-inline-actions">
+            <button id="sendOtpBtn" class="btn btn-secondary" type="button">Send OTP</button>
+          </div>
+          <div class="field">
+            <label for="otpCode">OTP Code</label>
+            <input id="otpCode" name="otpCode" inputmode="numeric" placeholder="Enter OTP">
+          </div>
+          <div class="modal-actions auth-inline-actions">
+            <button id="verifyOtpBtn" class="btn btn-primary" type="button">Verify OTP</button>
+          </div>
+          <div id="recaptcha-container"></div>
+        </div>
+
+        <div class="auth-panel" data-auth-panel="simple">
+          <div class="field">
+            <label for="loginName">Full Name</label>
+            <input id="loginName" name="loginName" placeholder="Enter your full name" required>
+          </div>
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" name="loginEmail" type="email" placeholder="Enter your email" required>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-secondary" type="button" id="cancelLoginBtn">Cancel</button>
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
         </div>
       </form>
     </div>
@@ -167,8 +199,9 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="./store-config.js"></script>
+  <script type="module" src="./store-auth.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="./store.js"></script>
 </body>
 </html>

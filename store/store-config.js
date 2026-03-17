@@ -1,5 +1,5 @@
 window.STORE_CONFIG = {
-  apiBaseUrl: "http://localhost:8080/api",
+ apiBaseUrl: "https://gdz-store-backend.onrender.com/api",
   adminPanelUrl: "./admin.html",
   brand: {
     name: "GDZ Store",

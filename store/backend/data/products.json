@@ -1,0 +1,38 @@
+[
+  {
+    "docId": "p1",
+    "id": "website-pack",
+    "title": "Website Starter Pack",
+    "details": "Custom landing page, responsive layout, contact section, and publish-ready setup.",
+    "amount": 1499,
+    "image": "../blog.png",
+    "type": "order",
+    "actionLabel": "Order Now",
+    "actionUrl": "mailto:gulshanshk6@gmail.com?subject=Website%20Starter%20Pack%20Order",
+    "features": [
+      "Responsive design",
+      "Fast delivery support",
+      "Service order after payment"
+    ],
+    "createdAt": "2026-03-17T00:00:00.000Z",
+    "updatedAt": "2026-03-17T00:00:00.000Z"
+  },
+  {
+    "docId": "p2",
+    "id": "smart-pdf-viewer",
+    "title": "Smart PDF Viewer",
+    "details": "Useful document viewer package with simple workflow and instant file access.",
+    "amount": 299,
+    "image": "../app pic.jpg",
+    "type": "download",
+    "actionLabel": "Download",
+    "actionUrl": "../simple download file.pdf",
+    "features": [
+      "Instant file access",
+      "Download unlock after payment",
+      "Digital product card layout"
+    ],
+    "createdAt": "2026-03-17T00:00:00.000Z",
+    "updatedAt": "2026-03-17T00:00:00.000Z"
+  }
+]

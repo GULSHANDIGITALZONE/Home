@@ -1,10 +1,20 @@
 window.STORE_CONFIG = {
- apiBaseUrl: "https://gdz-store-backend.onrender.com/api",
+  apiBaseUrl: "https://gdz-store-backend.onrender.com/api",
   adminPanelUrl: "./admin.html",
   brand: {
     name: "GDZ Store",
     shortName: "GS",
     tagline: "Login, pay, then order or download instantly"
+  },
+  firebase: {
+    enabled: true,
+    apiKey: "AIzaSyCAoP64KkU26tt_1rheoe67hKV3I3DddpY",
+    authDomain: "store-gulshandigitalzone.firebaseapp.com",
+    projectId: "store-gulshandigitalzone",
+    storageBucket: "store-gulshandigitalzone.firebasestorage.app",
+    messagingSenderId: "74385203058",
+    appId: "1:74385203058:web:dbfd12e28dde06e29e07eb",
+    measurementId: "G-8CKM675KYY"
   },
   payment: {
     provider: "razorpay",

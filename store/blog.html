@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | GDZ Store</title>
+  <meta name="description" content="Guides, SEO content, and product explainers from GDZ Store.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./store.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container topbar">
+      <div class="brand-block">
+        <div class="brand-badge">BL</div>
+        <div class="brand-text">
+          <strong>GDZ Blog</strong>
+          <span>Guides, explainers, and SEO content</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="./index.html">Back to Store</a>
+      </div>
+    </div>
+  </header>
+  <main class="extra-section">
+    <section class="container">
+      <div class="section-head">
+        <div>
+          <h1>Blog & Guides</h1>
+          <p>Store se related content aur service guides yahan milenge.</p>
+        </div>
+      </div>
+      <div id="blogList" class="my-products-list"></div>
+    </section>
+  </main>
+  <script src="./store-config.js"></script>
+  <script>
+    (async function () {
+      const api = ((window.STORE_CONFIG || {}).apiBaseUrl || "/api").replace(/\/+$/, "");
+      const list = document.getElementById("blogList");
+      try {
+        const response = await fetch(`${api}/blog`);
+        const data = await response.json();
+        const posts = Array.isArray(data.posts) ? data.posts : [];
+        list.innerHTML = posts.map((post) => `
+          <article class="my-product-item">
+            <div class="my-product-top">
+              <div>
+                <h3>${post.title}</h3>
+                <p>${post.excerpt || ""}</p>
+              </div>
+              <div class="tiny-pill">${new Date(post.publishedAt || post.createdAt).toLocaleDateString()}</div>
+            </div>
+            <div class="my-product-actions">
+              <a class="btn btn-secondary" href="./blog-post.html?slug=${encodeURIComponent(post.slug)}">Read Post</a>
+            </div>
+          </article>
+        `).join("") || '<article class="my-product-item"><div class="my-product-top"><div><h3>No posts yet</h3></div></div></article>';
+      } catch {
+        list.innerHTML = '<article class="my-product-item"><div class="my-product-top"><div><h3>Blog unavailable</h3></div></div></article>';
+      }
+    })();
+  </script>
+</body>
+</html>

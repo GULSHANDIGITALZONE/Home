@@ -1,0 +1,13 @@
+[
+  {
+    "docId": "blog_001",
+    "title": "How To Choose The Right Digital Product",
+    "slug": "how-to-choose-the-right-digital-product",
+    "excerpt": "A quick guide for selecting the right digital product, service, and support plan for your work.",
+    "content": "Choosing the right product depends on your goal, budget, delivery type, and support need. Start by comparing features, checking reviews, and understanding whether you need a download product or a custom service package.",
+    "coverImage": "../blog.png",
+    "tags": ["guide", "digital", "store"],
+    "publishedAt": "2026-03-19T09:00:00.000Z",
+    "createdAt": "2026-03-19T09:00:00.000Z"
+  }
+]

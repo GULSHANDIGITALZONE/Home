@@ -64,7 +64,8 @@ if (!firebaseConfig.enabled) {
 
       const sessionUser = {
         name: user.displayName || loginNameInput.value.trim() || "User",
-        email: user.email || loginEmailInput.value.trim() || user.phoneNumber || ""
+        email: user.email || loginEmailInput.value.trim() || user.phoneNumber || "",
+        photoUrl: user.photoURL || ""
       };
       localStorage.setItem("gdz_store_user", JSON.stringify(sessionUser));
       document.dispatchEvent(new CustomEvent("gdz-auth-changed", {

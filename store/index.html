@@ -4,11 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GDZ Store</title>
-  <meta name="description" content="Real-ready store website with login, payment, and order/download unlock flow.">
+  <meta name="description" content="Buy premium digital products and services with secure checkout, instant access, and reliable support.">
+  <meta name="keywords" content="digital store, website services, checkout, download products, GDZ Store">
+  <meta name="theme-color" content="#08111f">
+  <meta property="og:title" content="GDZ Store">
+  <meta property="og:description" content="Premium digital products, secure checkout, instant access, and reliable customer support.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gdz.services/store/">
+  <link rel="manifest" href="./manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./store.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "GDZ Store",
+      "url": "https://gdz.services/store/",
+      "description": "Premium digital products with secure checkout, instant access, and reliable support."
+    }
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -22,47 +38,203 @@
       </div>
 
       <div class="top-actions">
+        <button id="languageToggleBtn" class="btn btn-secondary" type="button">हिंदी</button>
+        <button id="themeToggleBtn" class="btn btn-secondary" type="button">Light</button>
+        <button id="installAppBtn" class="btn btn-secondary" type="button" hidden>Install App</button>
         <div id="userStatus" class="user-pill">Guest mode active</div>
         <a id="adminLink" class="btn btn-secondary" href="./admin.html">Admin</a>
+        <button id="profileBtn" class="btn btn-secondary" type="button" hidden>Profile</button>
         <button id="loginBtn" class="btn btn-primary" type="button">Login</button>
         <button id="logoutBtn" class="btn btn-secondary" type="button" hidden>Logout</button>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-panel">
-        <div class="hero-copy">
-          <div class="eyebrow">Real Store Website</div>
-          <h1>Product cards, payment flow, login/logout, and unlock after payment.</h1>
-          <p>Is project me aap products ko config file se control kar sakte ho. Payment ke liye Razorpay order flow ready structure diya gaya hai, aur order/download button sirf paid products ke liye active hota hai.</p>
+  <div id="profileMenu" class="profile-menu" hidden>
+    <button id="menuDashboardBtn" class="profile-menu-item" type="button">Dashboard</button>
+    <button id="menuEditProfileBtn" class="profile-menu-item" type="button">Update Profile</button>
+    <button id="menuUploadImageBtn" class="profile-menu-item" type="button">Upload Image Card</button>
+    <button id="menuWishlistBtn" class="profile-menu-item" type="button">Wishlist</button>
+    <button id="menuSettingsBtn" class="profile-menu-item" type="button">Settings & Share</button>
+  </div>
 
-          <div class="hero-stats">
-            <div class="stat-box">
-              <strong id="statProductCount">0</strong>
-              <span>Configured products</span>
-            </div>
-            <div class="stat-box">
-              <strong>Responsive</strong>
-              <span>Phone aur laptop dono ke liye</span>
-            </div>
-            <div class="stat-box">
-              <strong>Config Driven</strong>
-              <span>IDs aur keys baad me replace karna easy</span>
-            </div>
+  <main>
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-card">
+          <h2>How It Works</h2>
+          <p>Store use karna simple hai: product choose kijiye, secure payment complete kijiye, aur payment ke baad apna access, receipt, aur support sab ek hi jagah se manage kijiye.</p>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-card">
+            <strong>1. Choose Product</strong>
+            <p>Apni zarurat ke hisab se digital product, service, membership, ya bundle select kijiye.</p>
+          </article>
+          <article class="flow-card">
+            <strong>2. Login & Pay</strong>
+            <p>Google, phone, ya normal login ke baad secure checkout se payment complete kijiye.</p>
+          </article>
+          <article class="flow-card">
+            <strong>3. Get Access</strong>
+            <p>Payment ke baad product access, download, order details, aur receipt instantly unlock ho jayenge.</p>
+          </article>
+          <article class="flow-card">
+            <strong>4. Manage Anytime</strong>
+            <p>Profile se My Products, invoices, downloads, support tickets, aur order history kabhi bhi dekh sakte ho.</p>
+          </article>
+        </div>
+        <div class="logo-strip">
+          <span>FAST DELIVERY</span>
+          <span>SECURE CHECKOUT</span>
+          <span>INSTANT ACCESS</span>
+          <span>REAL SUPPORT</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="profile-card newsletter-card">
+          <div>
+            <h2>Join Newsletter</h2>
+            <p class="profile-muted">New offers, guides, and service updates ke liye email add kijiye.</p>
+          </div>
+          <div class="newsletter-form">
+            <input id="newsletterEmail" class="tool-input" type="email" placeholder="Enter your email">
+            <button id="newsletterBtn" class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="userDashboard" class="user-dashboard" hidden>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>User Dashboard</h2>
+            <p>Login ke baad user profile, quick summary aur purchased products yahan dikhेंगे.</p>
           </div>
         </div>
 
-        <aside class="hero-side">
-          <p>Setup flow:</p>
-          <ul class="side-list">
-            <li>`store-config.js` me products, brand, payment IDs aur links set karo.</li>
-            <li>Optional backend verify endpoint lagao for secure payment verification.</li>
-            <li>Razorpay key aur script add hote hi live checkout chal jayega.</li>
-            <li>Paid hone ke baad order/download button active ho jayega.</li>
-          </ul>
-        </aside>
+        <div class="dashboard-grid">
+          <article class="profile-card">
+            <div class="profile-top">
+              <div class="profile-avatar-wrap">
+                <img id="profilePhoto" class="profile-photo" alt="Profile photo" hidden>
+                <div class="profile-avatar" id="profileAvatar">U</div>
+              </div>
+              <div>
+                <h3 id="profileName">User Name</h3>
+                <p id="profileEmail" class="profile-muted">user@email.com</p>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <div class="mini-stat">
+                <strong id="profilePaidCount">0</strong>
+                <span>Paid Products</span>
+              </div>
+              <div class="mini-stat">
+                <strong id="profileReceiptCount">0</strong>
+                <span>Receipts</span>
+              </div>
+            </div>
+            <div class="my-product-actions profile-actions">
+              <button id="editProfileBtn" class="btn btn-secondary" type="button">Edit Profile</button>
+              <button id="openWishlistBtn" class="btn btn-secondary" type="button">Wishlist</button>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <h3>My Products</h3>
+            <div id="myProductsList" class="my-products-list"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Order History</h3>
+            <div id="orderHistoryList" class="my-products-list"></div>
+          </article>
+
+          <article class="profile-card">
+            <h3>Wishlist</h3>
+            <div id="wishlistList" class="my-products-list"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Loyalty Wallet</h3>
+            <div class="profile-stats">
+              <div class="mini-stat">
+                <strong id="loyaltyPointsValue">0</strong>
+                <span>Loyalty Points</span>
+              </div>
+              <div class="mini-stat">
+                <strong id="walletBalanceValue">Rs. 0</strong>
+                <span>Referral Wallet</span>
+              </div>
+            </div>
+            <div class="share-box">
+              <input id="giftCardCodeInput" class="tool-input" placeholder="Enter gift card code">
+              <label class="checkbox-field"><input id="applyWalletCheck" type="checkbox"> Use wallet balance in checkout</label>
+              <div class="my-product-actions">
+                <button id="redeemGiftCardBtn" class="btn btn-primary" type="button">Redeem Gift Card</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <h3>Download Manager</h3>
+            <div id="downloadManagerList" class="my-products-list"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Notification Inbox</h3>
+            <div id="notificationInboxList" class="my-products-list"></div>
+          </article>
+
+          <article class="profile-card">
+            <h3>My Dashboard Widgets</h3>
+            <div id="dashboardWidgetsList" class="my-products-list"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Referral & Share</h3>
+            <p class="profile-muted">Apna referral link share karo aur customers ko direct store tak bhejo.</p>
+            <div class="profile-stats">
+              <div class="mini-stat">
+                <strong id="referralCountValue">0</strong>
+                <span>Referrals</span>
+              </div>
+              <div class="mini-stat">
+                <strong id="referralCreditValue">Rs. 0</strong>
+                <span>Reward Credit</span>
+              </div>
+            </div>
+            <div class="share-box">
+              <input id="referralLinkInput" class="tool-input" readonly>
+              <div class="my-product-actions">
+                <button id="copyReferralBtn" class="btn btn-secondary" type="button">Copy Link</button>
+                <button id="shareWhatsappBtn" class="btn btn-primary" type="button">Share on WhatsApp</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <h3>Account Tools</h3>
+            <p class="profile-muted">Address, notification choice aur export tools yahan milenge.</p>
+            <div class="my-product-actions profile-actions">
+              <button id="openSettingsBtn" class="btn btn-secondary" type="button">Open Settings</button>
+              <button id="exportDataBtn" class="btn btn-primary" type="button">Export My Data</button>
+            </div>
+            <div id="addressPreviewList" class="my-products-list compact-list"></div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -75,11 +247,320 @@
           </div>
         </div>
 
+        <div class="store-tools">
+          <div class="category-links">
+            <a class="btn btn-secondary" href="./index.html?category=all">All Products</a>
+            <a class="btn btn-secondary" href="./index.html?category=digital">Digital</a>
+            <a class="btn btn-secondary" href="./index.html?category=services">Services</a>
+          </div>
+          <div class="store-search">
+            <input id="searchInput" class="tool-input" type="search" placeholder="Search products, tools, services...">
+          </div>
+          <div class="store-filters">
+            <select id="categoryFilter" class="tool-select">
+              <option value="all">All Categories</option>
+              <option value="digital">Digital</option>
+              <option value="services">Services</option>
+            </select>
+            <select id="sortSelect" class="tool-select">
+              <option value="featured">Sort: Featured</option>
+              <option value="top-rated">Sort: Top Rated</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+
         <div id="productGrid" class="product-grid"></div>
         <p id="gatewayNote" class="helper-note"></p>
       </div>
     </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Recently Viewed</h3>
+            <div id="recentlyViewedList" class="my-products-list"></div>
+          </article>
+          <article class="profile-card">
+            <h3>Recommended For You</h3>
+            <div id="recommendedList" class="my-products-list"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Compare Products</h2>
+            <p>Products ko side-by-side compare karke better decision lo.</p>
+          </div>
+          <a class="btn btn-secondary" href="./compare.html">Compare Products</a>
+        </div>
+        <div id="comparePreviewList" class="my-products-list"></div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Combo Offers / Bundle Builder</h2>
+            <p>2 ya usse zyada products choose karke bundle discount unlock kijiye.</p>
+          </div>
+        </div>
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <div id="bundleBuilderList" class="my-products-list"></div>
+          </article>
+          <article class="profile-card">
+            <h3>Bundle Summary</h3>
+            <div id="bundleSummaryBox" class="my-products-list"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Blog & Guides</h2>
+            <p>SEO-friendly content, buying guides, aur product explainers.</p>
+          </div>
+          <a class="btn btn-secondary" href="./blog.html">Open Blog</a>
+        </div>
+        <div id="blogPreviewList" class="my-products-list"></div>
+      </div>
+    </section>
+
+    <section class="cart-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Cart & Checkout</h2>
+            <p>Products add karke coupon apply karo, phir single checkout se payment complete karo.</p>
+          </div>
+        </div>
+        <div class="cart-layout">
+          <article class="profile-card">
+            <h3>Cart Items</h3>
+            <div id="cartItemsList" class="my-products-list"></div>
+          </article>
+          <article class="profile-card">
+            <h3>Checkout Summary</h3>
+            <div class="checkout-summary">
+              <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">Rs. 0</strong></div>
+              <div class="summary-row"><span>Discount</span><strong id="cartDiscount">Rs. 0</strong></div>
+              <div class="summary-row total"><span>Total</span><strong id="cartTotal">Rs. 0</strong></div>
+            </div>
+            <div class="coupon-box">
+              <input id="couponInput" class="tool-input" placeholder="Coupon code">
+              <button id="applyCouponBtn" class="btn btn-secondary" type="button">Apply Coupon</button>
+            </div>
+            <div id="couponSuggestionBox" class="helper-note"></div>
+            <p id="couponStatus" class="helper-note"></p>
+            <div class="my-product-actions">
+              <button id="checkoutCartBtn" class="btn btn-primary" type="button">Checkout Cart</button>
+              <button id="clearCartBtn" class="btn btn-secondary" type="button">Clear Cart</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Testimonials</h2>
+            <p>Professional trust build karne ke liye user feedback aur client proof bahut important hota hai.</p>
+          </div>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <p>"Fast service aur clean delivery. Payment ke baad access instantly mil gaya."</p>
+            <strong>Rohit Kumar</strong>
+          </article>
+          <article class="testimonial-card">
+            <p>"Store design mobile par bhi smooth hai. Checkout aur receipt flow simple laga."</p>
+            <strong>Neha Sharma</strong>
+          </article>
+          <article class="testimonial-card">
+            <p>"Digital product unlock system kaafi professional feel deta hai."</p>
+            <strong>Aditya Raj</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Ratings & Reviews</h2>
+            <p>Real buyers ki feedback se trust aur conversion dono improve hote hain.</p>
+          </div>
+          <div class="review-summary-card">
+            <strong id="reviewAverage">0.0</strong>
+            <span id="reviewCountText">0 reviews</span>
+          </div>
+        </div>
+        <div class="store-filters">
+          <select id="reviewFilterRating" class="tool-select">
+            <option value="all">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Write a Review</h3>
+            <form id="reviewForm" class="form-grid">
+              <div class="field">
+                <label for="reviewProductId">Product</label>
+                <select id="reviewProductId" class="tool-select"></select>
+              </div>
+              <div class="field">
+                <label for="reviewRating">Rating</label>
+                <select id="reviewRating" class="tool-select">
+                  <option value="5">5 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="2">2 Stars</option>
+                  <option value="1">1 Star</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="reviewTitle">Title</label>
+                <input id="reviewTitle" placeholder="Fast delivery, clean product">
+              </div>
+              <div class="field">
+                <label for="reviewMessage">Review</label>
+                <textarea id="reviewMessage" class="admin-textarea" placeholder="Apna experience likhiye..." required></textarea>
+              </div>
+              <div class="field">
+                <label for="reviewMediaUrl">Photo / Video URL</label>
+                <input id="reviewMediaUrl" placeholder="https://example.com/review-image.jpg">
+              </div>
+              <div class="field">
+                <label for="reviewMediaType">Media Type</label>
+                <select id="reviewMediaType" class="tool-select">
+                  <option value="">None</option>
+                  <option value="image">Image</option>
+                  <option value="video">Video</option>
+                </select>
+              </div>
+              <div class="modal-actions">
+                <button class="btn btn-primary" type="submit">Submit Review</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="profile-card">
+            <h3>Recent Reviews</h3>
+            <div id="reviewsList" class="my-products-list"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="dashboard-grid dashboard-lower">
+          <article class="profile-card">
+            <h3>Support Ticket</h3>
+            <form id="supportTicketForm" class="form-grid">
+              <div class="field">
+                <label for="supportSubject">Subject</label>
+                <input id="supportSubject" placeholder="Payment / access / order issue">
+              </div>
+              <div class="field">
+                <label for="supportMessage">Message</label>
+                <textarea id="supportMessage" class="admin-textarea" placeholder="Describe your issue"></textarea>
+              </div>
+              <div class="modal-actions">
+                <button class="btn btn-primary" type="submit">Create Ticket</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="profile-card">
+            <h3>Product Q&A</h3>
+            <form id="questionForm" class="form-grid">
+              <div class="field">
+                <label for="questionProductId">Product</label>
+                <select id="questionProductId" class="tool-select"></select>
+              </div>
+              <div class="field">
+                <label for="questionText">Question</label>
+                <textarea id="questionText" class="admin-textarea" placeholder="Ask about feature, delivery, access, etc."></textarea>
+              </div>
+              <div class="modal-actions">
+                <button class="btn btn-primary" type="submit">Ask Question</button>
+              </div>
+            </form>
+            <div id="questionsList" class="my-products-list"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p>Refund, delivery, download access aur support se related common questions.</p>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Payment ke baad product kab unlock hota hai?</summary>
+            <p>Verified payment ke turant baad order/download unlock ho jata hai aur receipt save ho jati hai.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Download product ka access dobara kaise milega?</summary>
+            <p>Login karne ke baad dashboard ke My Products aur Order History sections se receipt aur access mil jayega.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Service order ke liye next step kya hota hai?</summary>
+            <p>Order action open hone ke baad email/WhatsApp flow ke through delivery discussion continue hota hai.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>GDZ Store</strong>
+        <p class="footer-copy">Secure checkout, fast delivery, and creator-friendly digital store experience.</p>
+      </div>
+      <div class="footer-links">
+        <a href="./faq.html">FAQ Page</a>
+        <a href="./refund-policy.html">Refund Policy</a>
+        <a href="./terms.html">Terms & Conditions</a>
+        <a href="./privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav">
+    <a href="./index.html">Store</a>
+    <a href="./compare.html">Compare</a>
+    <a href="./digital.html">Digital</a>
+    <a href="./services.html">Services</a>
+  </nav>
 
   <div id="loginModal" class="modal" aria-hidden="true">
     <div class="modal-card">
@@ -171,6 +652,14 @@
             <p id="paymentFlowType">Waiting to start payment.</p>
           </div>
         </div>
+        <div id="backupPaymentBox" class="payment-card" hidden>
+          <strong>Backup Payment Options</strong>
+          <div class="card-actions">
+            <button id="upiPaymentBtn" class="btn btn-secondary" type="button">UPI</button>
+            <button id="cashfreePaymentBtn" class="btn btn-secondary" type="button">Cashfree</button>
+            <button id="phonepePaymentBtn" class="btn btn-secondary" type="button">PhonePe</button>
+          </div>
+        </div>
       </div>
 
       <div class="modal-actions">
@@ -191,15 +680,121 @@
       </div>
       <div id="receiptContent" class="payment-box"></div>
       <div class="modal-actions">
+        <button id="emailReceiptBtn" class="btn btn-secondary" type="button">Email Support</button>
+        <button id="whatsappReceiptBtn" class="btn btn-secondary" type="button">WhatsApp Support</button>
+        <button id="invoicePdfBtn" class="btn btn-secondary" type="button">Invoice PDF</button>
         <button id="downloadReceiptBtn" class="btn btn-success" type="button">Download Receipt</button>
         <button id="closeReceiptBtn" class="btn btn-secondary" type="button">Close</button>
       </div>
     </div>
   </div>
 
+  <div id="profileModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3>Edit Profile</h3>
+          <p>User apna naam, email aur photo URL yahan update kar sakta hai.</p>
+        </div>
+        <button id="closeProfileModal" class="icon-btn" type="button">X</button>
+      </div>
+      <form id="profileForm" class="form-grid">
+        <div class="field">
+          <label for="profileNameInput">Full Name</label>
+          <input id="profileNameInput" placeholder="Enter full name" required>
+        </div>
+        <div class="field">
+          <label for="profileEmailInput">Email</label>
+          <input id="profileEmailInput" type="email" placeholder="Enter email" required>
+        </div>
+        <div class="field">
+          <label for="profilePhotoInput">Photo URL</label>
+          <input id="profilePhotoInput" placeholder="https://example.com/photo.jpg">
+        </div>
+        <div class="modal-actions">
+          <button id="cancelProfileBtn" class="btn btn-secondary" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="imageCardModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3>Upload Image Card</h3>
+          <p>Image URL dalke profile photo card update kar sakte ho.</p>
+        </div>
+        <button id="closeImageCardModal" class="icon-btn" type="button">X</button>
+      </div>
+      <form id="imageCardForm" class="form-grid">
+        <div class="field">
+          <label for="imageCardUrl">Image URL</label>
+          <input id="imageCardUrl" placeholder="https://example.com/profile.jpg" required>
+        </div>
+        <div class="modal-actions">
+          <button id="cancelImageCardBtn" class="btn btn-secondary" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Image</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="settingsModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3>Account Settings</h3>
+          <p>Saved address, notifications aur small account preferences yahan manage kar sakte ho.</p>
+        </div>
+        <button id="closeSettingsModal" class="icon-btn" type="button">X</button>
+      </div>
+      <form id="settingsForm" class="form-grid">
+        <div class="field">
+          <label for="addressLineInput">Address / Delivery Notes</label>
+          <textarea id="addressLineInput" class="admin-textarea" placeholder="House no, area, city, pin"></textarea>
+        </div>
+        <div class="field">
+          <label for="notificationEmailInput">Order Email</label>
+          <input id="notificationEmailInput" type="email" placeholder="Enter notification email">
+        </div>
+        <div class="field checkbox-field">
+          <label><input id="notifyEmailCheck" type="checkbox"> Email notifications</label>
+        </div>
+        <div class="field checkbox-field">
+          <label><input id="notifyWhatsappCheck" type="checkbox"> WhatsApp notifications</label>
+        </div>
+        <div class="modal-actions">
+          <button id="cancelSettingsBtn" class="btn btn-secondary" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Settings</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+  <div id="supportWidget" class="support-widget" hidden>
+    <button id="supportWidgetToggle" class="btn btn-primary" type="button">Support</button>
+    <div id="supportWidgetPanel" class="support-widget-panel" hidden>
+      <strong>Need Help?</strong>
+      <p>Order, payment, ya access issue ho to direct support se baat karo.</p>
+      <div class="chatbot-box">
+        <button id="chatbotPaymentBtn" class="btn btn-secondary" type="button">Payment Help</button>
+        <button id="chatbotDownloadBtn" class="btn btn-secondary" type="button">Download Help</button>
+        <button id="chatbotOrderBtn" class="btn btn-secondary" type="button">Order Help</button>
+        <p id="chatbotReply" class="profile-muted">Quick answer yahan show hoga.</p>
+      </div>
+      <div class="card-actions">
+        <button id="supportEmailBtn" class="btn btn-secondary" type="button">Email</button>
+        <button id="supportWhatsappBtn" class="btn btn-secondary" type="button">WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
   <script src="./store-config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script type="module" src="./store-auth.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="./store.js"></script>

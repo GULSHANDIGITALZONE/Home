@@ -1,0 +1,22 @@
+[
+  {
+    "docId": "c1",
+    "code": "WELCOME10",
+    "type": "percent",
+    "value": 10,
+    "usageLimit": 100,
+    "usedCount": 0,
+    "active": true,
+    "description": "Welcome offer for first checkout"
+  },
+  {
+    "docId": "c2",
+    "code": "SAVE100",
+    "type": "flat",
+    "value": 100,
+    "usageLimit": 50,
+    "usedCount": 0,
+    "active": true,
+    "description": "Flat 100 off on bigger orders"
+  }
+]

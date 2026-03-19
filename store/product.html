@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | GDZ Store</title>
+  <meta name="description" content="Product details and buying information for GDZ Store.">
+  <meta property="og:title" content="Product Details | GDZ Store">
+  <meta property="og:description" content="Explore product details, features, and pricing.">
+  <meta property="og:type" content="product">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./store.css">
+  <script type="application/ld+json" id="productSchema"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container topbar">
+      <div class="brand-block">
+        <div class="brand-badge">GS</div>
+        <div class="brand-text">
+          <strong id="detailHeading">GDZ Product</strong>
+          <span id="detailTagline">Detailed view with dynamic meta support</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="./index.html">Back to Store</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="extra-section">
+    <section class="container">
+      <div id="productDetailCard" class="profile-card"></div>
+    </section>
+  </main>
+
+  <script src="./store-config.js"></script>
+  <script>
+    (async function () {
+      const config = window.STORE_CONFIG || {};
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      const card = document.getElementById("productDetailCard");
+      try {
+        const response = await fetch(`${(config.apiBaseUrl || "/api").replace(/\/+$/, "")}/products/${encodeURIComponent(id)}`);
+        const data = await response.json();
+        if (!response.ok || !data.product) throw new Error(data.message || "Product not found");
+        const product = data.product;
+        const reviews = Array.isArray(data.reviews) ? data.reviews : [];
+        const related = Array.isArray(data.related) ? data.related : [];
+
+        document.title = `${product.title} | GDZ Store`;
+        document.querySelector('meta[name="description"]').setAttribute("content", product.details);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", `${product.title} | GDZ Store`);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", product.details);
+        document.getElementById("detailHeading").textContent = product.title;
+        document.getElementById("detailTagline").textContent = product.details;
+        document.getElementById("productSchema").textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.title,
+          "description": product.details,
+          "image": product.image,
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "price": product.amount
+          },
+          "aggregateRating": reviews.length ? {
+            "@type": "AggregateRating",
+            "ratingValue": data.averageRating || 0,
+            "reviewCount": reviews.length
+          } : undefined
+        });
+
+        card.innerHTML = `
+        <div class="dashboard-grid">
+          <article class="product-card">
+            <div class="product-image-wrap">
+              <img class="product-image" src="${product.image}" alt="${product.title}">
+            </div>
+            <div class="product-body">
+              <div class="product-top">
+                <div>
+                  <h2>${product.title}</h2>
+                  <p>${product.details}</p>
+                </div>
+                <div class="price-tag">Rs. ${product.amount}</div>
+              </div>
+              <ul class="meta-list">${(product.features || []).map((item) => `<li>${item}</li>`).join("")}</ul>
+              <div class="card-actions">
+                <a class="btn btn-primary" href="./index.html">Buy From Store</a>
+                <a class="btn btn-secondary" href="./compare.html">Compare</a>
+              </div>
+            </div>
+          </article>
+          <article class="profile-card">
+            <h3>Customer Signals</h3>
+            <p>${reviews.length ? `${reviews.length} reviews available.` : "No reviews yet."}</p>
+            <div class="my-products-list">
+              ${reviews.slice(0, 4).map((review) => `
+                <article class="my-product-item">
+                  <div class="my-product-top">
+                    <div>
+                      <h4>${review.title || review.name}</h4>
+                      <p>${review.message}</p>
+                    </div>
+                    <div class="tiny-pill">${review.rating}/5</div>
+                  </div>
+                  ${review.mediaUrl ? `<a class="btn btn-secondary" href="${review.mediaUrl}" target="_blank" rel="noopener">Open Media</a>` : ""}
+                </article>
+              `).join("") || '<article class="my-product-item"><div class="my-product-top"><div><h4>Waiting for first review</h4><p>Is product ke liye abhi reviews add nahi hue hain.</p></div></div></article>'}
+            </div>
+            <h3 style="margin-top:20px;">Related Products</h3>
+            <div class="my-products-list">
+              ${related.map((item) => `
+                <article class="my-product-item">
+                  <div class="my-product-top">
+                    <div>
+                      <h4>${item.title}</h4>
+                      <p>${item.details}</p>
+                    </div>
+                    <div class="price-tag">Rs. ${item.amount}</div>
+                  </div>
+                  <div class="my-product-actions">
+                    <a class="btn btn-secondary" href="./product.html?id=${encodeURIComponent(item.id)}">Open</a>
+                  </div>
+                </article>
+              `).join("") || '<article class="my-product-item"><div class="my-product-top"><div><h4>No related product</h4></div></div></article>'}
+            </div>
+          </article>
+        </div>
+      `;
+      } catch {
+        card.innerHTML = "<h2>Product not found</h2><p>Valid product id ke saath page open kijiye.</p>";
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -58,10 +58,27 @@ WHAT YOU NEED TO MAKE IT REAL
    In `store-config.js`
    `payment.enableServerVerification = true`
 
+10b. Optional external integrations
+   In backend `.env`
+   - `BREVO_API_KEY`
+   - `BREVO_SENDER_EMAIL`
+   - `RESEND_API_KEY`
+   - `RESEND_SENDER_EMAIL`
+   - `WHATSAPP_TOKEN`
+   - `WHATSAPP_PHONE_NUMBER_ID`
+   - `CLOUD_DOWNLOAD_BASE_URL`
+   - `CLOUD_DOWNLOAD_TOKEN`
+
 11. Replace your support email and WhatsApp
    In `store-config.js`
    `support.orderEmail`
    `support.orderWhatsapp`
+
+11b. Optional backup payments
+   In `store-config.js`
+   - `backupPayment.upiId`
+   - `backupPayment.cashfreeLink`
+   - `backupPayment.phonepeLink`
 
 12. Replace product info
    In `store-config.js` or backend `data/products.json`

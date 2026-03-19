@@ -25,11 +25,17 @@ window.STORE_CONFIG = {
     verifyEndpoint: "/payments/verify",
     createOrderEndpoint: "/payments/create-order",
     enableServerVerification: true,
-    manualFallback: true
+    manualFallback: false
   },
   support: {
     orderEmail: "gulshanshk6@gmail.com",
-    orderWhatsapp: "916299050695"
+    orderWhatsapp: "916299050695",
+    chatWidgetEnabled: true
+  },
+  backupPayment: {
+    upiId: "",
+    cashfreeLink: "",
+    phonepeLink: ""
   },
   products: [
     {

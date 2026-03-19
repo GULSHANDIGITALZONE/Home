@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post | GDZ Store</title>
+  <meta name="description" content="Read the latest GDZ Store guide or article.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./store.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container topbar">
+      <div class="brand-block">
+        <div class="brand-badge">BL</div>
+        <div class="brand-text">
+          <strong id="blogPostTitle">Blog Post</strong>
+          <span id="blogPostMeta">Loading article...</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="./blog.html">Back to Blog</a>
+      </div>
+    </div>
+  </header>
+  <main class="extra-section">
+    <section class="container">
+      <article id="blogPostCard" class="profile-card"></article>
+    </section>
+  </main>
+  <script src="./store-config.js"></script>
+  <script>
+    (async function () {
+      const api = ((window.STORE_CONFIG || {}).apiBaseUrl || "/api").replace(/\/+$/, "");
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      const card = document.getElementById("blogPostCard");
+      try {
+        const response = await fetch(`${api}/blog/${encodeURIComponent(slug)}`);
+        const data = await response.json();
+        if (!response.ok || !data.post) throw new Error("Post not found");
+        const post = data.post;
+        document.title = `${post.title} | GDZ Blog`;
+        document.querySelector('meta[name="description"]').setAttribute("content", post.excerpt || post.title);
+        document.getElementById("blogPostTitle").textContent = post.title;
+        document.getElementById("blogPostMeta").textContent = `${new Date(post.publishedAt || post.createdAt).toLocaleDateString()} • ${(post.tags || []).join(", ")}`;
+        card.innerHTML = `
+          ${post.coverImage ? `<img class="review-media" src="${post.coverImage}" alt="${post.title}">` : ""}
+          <h1>${post.title}</h1>
+          <p class="profile-muted">${post.excerpt || ""}</p>
+          <div class="stack-meta">${(post.tags || []).map((tag) => `<span>${tag}</span>`).join("")}</div>
+          <p>${post.content || ""}</p>
+        `;
+      } catch {
+        card.innerHTML = "<h2>Post not found</h2><p>Valid blog slug ke saath page open kijiye.</p>";
+      }
+    })();
+  </script>
+</body>
+</html>

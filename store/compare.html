@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Products | GDZ Store</title>
+  <meta name="description" content="Compare GDZ Store products side by side.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./store.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container topbar">
+      <div class="brand-block">
+        <div class="brand-badge">GS</div>
+        <div class="brand-text">
+          <strong>Compare Products</strong>
+          <span>Side by side view for better buying decisions</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="./index.html">Back to Store</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="extra-section">
+    <section class="container">
+      <div class="section-head">
+        <div>
+          <h1>Compare Your Selected Products</h1>
+          <p>Store ke compare list se ye page 2-3 products ko ek jagah dikhata hai.</p>
+        </div>
+      </div>
+      <div id="comparePageList" class="product-grid"></div>
+    </section>
+  </main>
+
+  <script src="./store-config.js"></script>
+  <script>
+    (function () {
+      const products = Array.isArray((window.STORE_CONFIG || {}).products) ? window.STORE_CONFIG.products : [];
+      const ids = JSON.parse(localStorage.getItem("gdz_store_compare") || "[]");
+      const items = ids.map((id) => products.find((product) => product.id === id)).filter(Boolean);
+      const container = document.getElementById("comparePageList");
+      if (!items.length) {
+        container.innerHTML = '<article class="profile-card"><h3>No compare items</h3><p>Store page se compare me products add kijiye.</p></article>';
+        return;
+      }
+      container.innerHTML = items.map((product) => `
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="${product.image}" alt="${product.title}">
+          </div>
+          <div class="product-body">
+            <div class="product-top">
+              <div>
+                <h3>${product.title}</h3>
+                <p>${product.details}</p>
+              </div>
+              <div class="price-tag">Rs. ${product.amount}</div>
+            </div>
+            <ul class="meta-list">${(product.features || []).map((item) => `<li>${item}</li>`).join("")}</ul>
+            <div class="card-actions">
+              <a class="btn btn-secondary" href="./product.html?id=${encodeURIComponent(product.id)}">View Details</a>
+              <a class="btn btn-primary" href="./index.html">Buy Now</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "GDZ Store",
+  "short_name": "GDZ Store",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#08111f",
+  "theme_color": "#08111f",
+  "description": "Professional store website with login, payments, and downloads.",
+  "icons": []
+}

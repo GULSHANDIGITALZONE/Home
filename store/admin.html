@@ -48,6 +48,21 @@
       </div>
 
       <div id="adminDashboard" class="admin-dashboard" hidden>
+        <div id="adminStatsGrid" class="admin-stats-grid"></div>
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Low Stock / Limited Seats</h2>
+            </div>
+            <div id="lowStockList" class="stack-list"></div>
+          </section>
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Recent Orders</h2>
+            </div>
+            <div id="recentOrdersList" class="stack-list"></div>
+          </section>
+        </div>
         <div class="admin-grid">
           <section class="admin-card">
             <div class="admin-section-head">
@@ -77,12 +92,37 @@
                 <label for="productImage">Image URL</label>
                 <input id="productImage" required placeholder="../blog.png">
               </div>
+              <div id="productImagePreview" class="admin-image-preview">Image preview will appear here</div>
               <div class="field">
                 <label for="productType">Type</label>
                 <select id="productType" class="admin-select">
                   <option value="download">Download</option>
                   <option value="order">Order</option>
                 </select>
+              </div>
+              <div class="field">
+                <label for="productCategory">Category</label>
+                <select id="productCategory" class="admin-select">
+                  <option value="digital">Digital</option>
+                  <option value="services">Services</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="productBadge">Badge</label>
+                <select id="productBadge" class="admin-select">
+                  <option value="featured">Featured</option>
+                  <option value="trending">Trending</option>
+                  <option value="new">New</option>
+                  <option value="">None</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="productStock">Stock / Seats</label>
+                <input id="productStock" type="number" placeholder="10">
+              </div>
+              <div class="field">
+                <label for="productOfferText">Offer Text</label>
+                <input id="productOfferText" placeholder="Only 3 seats left">
               </div>
               <div class="field">
                 <label for="productActionLabel">Action Label</label>
@@ -96,6 +136,34 @@
                 <label for="productFeatures">Features</label>
                 <textarea id="productFeatures" class="admin-textarea" placeholder="Feature 1, Feature 2, Feature 3"></textarea>
               </div>
+              <div class="field">
+                <label for="productTags">Tags</label>
+                <input id="productTags" placeholder="seo, website, premium">
+              </div>
+              <div class="field">
+                <label for="productBillingCycle">Billing Cycle</label>
+                <input id="productBillingCycle" placeholder="monthly / yearly / one-time">
+              </div>
+              <div class="field">
+                <label for="productCountdownEndsAt">Offer Countdown</label>
+                <input id="productCountdownEndsAt" type="datetime-local">
+              </div>
+              <div class="field">
+                <label for="productDynamicDiscountPercent">Dynamic Discount %</label>
+                <input id="productDynamicDiscountPercent" type="number" min="0" max="90" placeholder="10">
+              </div>
+              <div class="field">
+                <label for="productSlaText">Delivery SLA / ETA</label>
+                <input id="productSlaText" placeholder="Delivered within 2 hours">
+              </div>
+              <div class="field">
+                <label for="productVendorName">Vendor / Seller</label>
+                <input id="productVendorName" placeholder="GDZ Team">
+              </div>
+              <div class="field">
+                <label for="productGallery">Gallery URLs</label>
+                <textarea id="productGallery" class="admin-textarea" placeholder="https://img1.jpg, https://img2.jpg"></textarea>
+              </div>
               <div class="modal-actions">
                 <button id="saveProductBtn" class="btn btn-primary" type="submit">Save Product</button>
               </div>
@@ -106,16 +174,259 @@
           <section class="admin-card">
             <div class="admin-section-head">
               <h2>Products</h2>
-              <button id="refreshProductsBtn" class="btn btn-secondary" type="button">Refresh</button>
+              <div class="stack-actions">
+                <button id="refreshProductsBtn" class="btn btn-secondary" type="button">Refresh</button>
+                <button id="exportProductsBtn" class="btn btn-secondary" type="button">Export JSON</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="productImportJson">Bulk Import JSON</label>
+              <textarea id="productImportJson" class="admin-textarea" placeholder='[{"id":"new-id","title":"Title"}]'></textarea>
+            </div>
+            <div class="modal-actions">
+              <button id="importProductsBtn" class="btn btn-primary" type="button">Import Products</button>
             </div>
             <div id="adminProductsList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Coupons</h2>
+            </div>
+            <form id="couponForm" class="form-grid">
+              <input type="hidden" id="couponDocId">
+              <div class="field">
+                <label for="couponCode">Coupon Code</label>
+                <input id="couponCode" placeholder="WELCOME10" required>
+              </div>
+              <div class="field">
+                <label for="couponType">Coupon Type</label>
+                <select id="couponType" class="admin-select">
+                  <option value="percent">Percent</option>
+                  <option value="flat">Flat</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="couponValue">Value</label>
+                <input id="couponValue" type="number" placeholder="10" required>
+              </div>
+              <div class="field">
+                <label for="couponUsageLimit">Usage Limit</label>
+                <input id="couponUsageLimit" type="number" placeholder="0 = unlimited">
+              </div>
+              <div class="field">
+                <label for="couponExpiresAt">Expiry</label>
+                <input id="couponExpiresAt" type="datetime-local">
+              </div>
+              <div class="field">
+                <label for="couponDescription">Description</label>
+                <input id="couponDescription" placeholder="Welcome offer">
+              </div>
+              <div class="modal-actions">
+                <button id="saveCouponBtn" class="btn btn-primary" type="submit">Save Coupon</button>
+              </div>
+            </form>
+            <div id="adminCouponsList" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Users</h2>
+              <div class="stack-actions">
+                <button id="refreshUsersBtn" class="btn btn-secondary" type="button">Refresh</button>
+                <button id="exportUsersBtn" class="btn btn-secondary" type="button">Export CSV</button>
+              </div>
+            </div>
+            <div id="adminUsersList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Reviews Moderation</h2>
+              <button id="refreshReviewsBtn" class="btn btn-secondary" type="button">Refresh</button>
+            </div>
+            <div id="adminReviewsList" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Analytics & Notifications</h2>
+              <button id="refreshNotificationsBtn" class="btn btn-secondary" type="button">Refresh</button>
+            </div>
+            <div id="adminAnalyticsChart" class="admin-analytics-chart"></div>
+            <div id="adminNotificationsList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Support Tickets</h2>
+              <button id="refreshSupportTicketsBtn" class="btn btn-secondary" type="button">Refresh</button>
+            </div>
+            <div id="adminSupportTicketsList" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Product Questions</h2>
+              <button id="refreshQuestionsBtn" class="btn btn-secondary" type="button">Refresh</button>
+            </div>
+            <div id="adminQuestionsList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Permission Matrix</h2>
+            </div>
+            <div id="adminPermissionMatrix" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Vendor / Franchise Snapshot</h2>
+            </div>
+            <div id="adminVendorPanel" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>System Backup / Restore</h2>
+            </div>
+            <div class="stack-actions">
+              <button id="exportBackupBtn" class="btn btn-secondary" type="button">Export Backup JSON</button>
+            </div>
+            <div class="field">
+              <label for="backupRestoreJson">Restore JSON</label>
+              <textarea id="backupRestoreJson" class="admin-textarea" placeholder='{"backup":{"products":[]}}'></textarea>
+            </div>
+            <div class="modal-actions">
+              <button id="restoreBackupBtn" class="btn btn-primary" type="button">Restore Backup</button>
+            </div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Gift Cards</h2>
+            </div>
+            <form id="giftCardForm" class="form-grid">
+              <div class="field">
+                <label for="giftCardCode">Code</label>
+                <input id="giftCardCode" placeholder="GIFT100">
+              </div>
+              <div class="field">
+                <label for="giftCardAmount">Amount</label>
+                <input id="giftCardAmount" type="number" placeholder="500">
+              </div>
+              <div class="field">
+                <label for="giftCardEmail">Assigned Email</label>
+                <input id="giftCardEmail" type="email" placeholder="user@example.com">
+              </div>
+              <div class="field">
+                <label for="giftCardExpiresAt">Expiry</label>
+                <input id="giftCardExpiresAt" type="datetime-local">
+              </div>
+              <div class="modal-actions">
+                <button id="saveGiftCardBtn" class="btn btn-primary" type="submit">Create Gift Card</button>
+              </div>
+            </form>
+            <div id="adminGiftCardsList" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Blog Engine</h2>
+            </div>
+            <form id="blogForm" class="form-grid">
+              <div class="field">
+                <label for="blogTitle">Title</label>
+                <input id="blogTitle" placeholder="Blog title">
+              </div>
+              <div class="field">
+                <label for="blogSlug">Slug</label>
+                <input id="blogSlug" placeholder="blog-slug">
+              </div>
+              <div class="field">
+                <label for="blogExcerpt">Excerpt</label>
+                <input id="blogExcerpt" placeholder="Short summary">
+              </div>
+              <div class="field">
+                <label for="blogCoverImage">Cover Image</label>
+                <input id="blogCoverImage" placeholder="../blog.png">
+              </div>
+              <div class="field">
+                <label for="blogTags">Tags</label>
+                <input id="blogTags" placeholder="seo, guide, store">
+              </div>
+              <div class="field">
+                <label for="blogContent">Content</label>
+                <textarea id="blogContent" class="admin-textarea" placeholder="Full blog content"></textarea>
+              </div>
+              <div class="modal-actions">
+                <button id="saveBlogBtn" class="btn btn-primary" type="submit">Publish Post</button>
+              </div>
+            </form>
+            <div id="adminBlogList" class="stack-list"></div>
+          </section>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Admins</h2>
+            </div>
+            <form id="adminCreateForm" class="form-grid">
+              <div class="field">
+                <label for="newAdminName">Name</label>
+                <input id="newAdminName" placeholder="Manager Name">
+              </div>
+              <div class="field">
+                <label for="newAdminUsername">Username</label>
+                <input id="newAdminUsername" placeholder="manager_1">
+              </div>
+              <div class="field">
+                <label for="newAdminPassword">Password</label>
+                <input id="newAdminPassword" type="password" placeholder="strong password">
+              </div>
+              <div class="field">
+                <label for="newAdminRole">Role</label>
+                <select id="newAdminRole" class="admin-select">
+                  <option value="manager">Manager</option>
+                  <option value="editor">Editor</option>
+                  <option value="support">Support</option>
+                </select>
+              </div>
+              <div class="modal-actions">
+                <button id="saveAdminBtn" class="btn btn-primary" type="submit">Create Admin</button>
+              </div>
+            </form>
+            <div id="adminAdminsList" class="stack-list"></div>
+          </section>
+
+          <section class="admin-card">
+            <div class="admin-section-head">
+              <h2>Audit Log</h2>
+              <button id="refreshAuditBtn" class="btn btn-secondary" type="button">Refresh</button>
+            </div>
+            <div id="adminAuditList" class="stack-list"></div>
           </section>
         </div>
 
         <section class="admin-card admin-orders">
           <div class="admin-section-head">
             <h2>Orders</h2>
-            <button id="refreshOrdersBtn" class="btn btn-secondary" type="button">Refresh</button>
+            <div class="stack-actions">
+              <button id="refreshOrdersBtn" class="btn btn-secondary" type="button">Refresh</button>
+              <button id="exportOrdersBtn" class="btn btn-secondary" type="button">Export CSV</button>
+            </div>
           </div>
           <div id="adminOrdersList" class="stack-list"></div>
         </section>

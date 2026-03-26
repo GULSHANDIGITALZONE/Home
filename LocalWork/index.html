@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kam Karo - Web Portal</title>
+    <title>LocalWork - Find Job & Workers</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="./LocalWork.png" type="image/x-icon">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -17,163 +25,423 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+        .tab-active { background: #2563eb; color: white; }
+
+        /* New Animations */
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 font-sans">
 
     <!-- Sidebar for Desktop -->
-    <aside class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg hidden md:block">
+    <aside class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg hidden md:block z-30 border-r">
         <div class="p-6">
-            <h1 class="text-2xl font-bold text-blue-600">Kam Karo</h1>
+            <h1 class="text-2xl font-black text-blue-600 tracking-tighter">LocalWork</h1>
+            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Find Job & Workers</p>
         </div>
         <nav class="mt-6">
-            <a href="#" onclick="showSection('home')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition" id="nav-home-desktop">
+            <a href="#" onclick="showSection('home')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition font-bold" id="nav-home-desktop">
                 <i class="fas fa-home mr-3 w-5"></i> Home
             </a>
-            <a href="#" onclick="showSection('post')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition" id="nav-post-desktop">
-                <i class="fas fa-plus-circle mr-3 w-5"></i> Post Job
+            <a href="#" onclick="showSection('post')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition font-bold" id="nav-post-desktop">
+                <i class="fas fa-plus-circle mr-3 w-5"></i> Post a Job
             </a>
-            <a href="#" onclick="showSection('chat')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition" id="nav-chat-desktop">
-                <i class="fas fa-comments mr-3 w-5"></i> Chat
+            <a href="#" onclick="showSection('chat')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition font-bold" id="nav-chat-desktop">
+                <i class="fas fa-comments mr-3 w-5"></i> Messages
             </a>
-            <a href="#" onclick="showSection('account')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition" id="nav-account-desktop">
+            <a href="#" onclick="showSection('payments')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition font-bold" id="nav-payments-desktop">
+                <i class="fas fa-wallet mr-3 w-5"></i> Payments
+            </a>
+            <a href="#" onclick="showSection('account')" class="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-100 transition font-bold" id="nav-account-desktop">
                 <i class="fas fa-user mr-3 w-5"></i> Account
             </a>
         </nav>
     </aside>
 
     <!-- Main Content Area -->
-    <main class="md:ml-64 pb-20 md:pb-0">
+    <main class="md:ml-64 pb-24 md:pb-10 min-h-screen">
         <!-- Header -->
-        <header class="bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-10">
-            <h2 id="section-title" class="text-xl font-semibold text-blue-800">Home</h2>
-            <div id="user-profile" class="flex items-center space-x-2 cursor-pointer">
-                <!-- User profile content injected by JS -->
-                <span id="user-name" class="hidden sm:inline font-medium">Guest</span>
-                <img id="user-img" src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full border border-blue-100 object-cover">
+        <header class="bg-white/80 backdrop-blur-md shadow-sm p-4 flex justify-between items-center sticky top-0 z-40 border-b">
+            <h2 id="section-title" class="text-xl font-black text-gray-800 uppercase tracking-tight">Home</h2>
+            <div id="user-profile" class="flex items-center space-x-2 cursor-pointer" onclick="showSection('account')">
+                <div class="text-right hidden sm:block">
+                    <p id="user-name" class="text-sm font-black text-gray-800 leading-none">Guest</p>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase mt-1">LocalWork User</p>
+                </div>
+                <img id="user-img" src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full border-2 border-blue-50 object-cover shadow-sm">
             </div>
         </header>
 
         <!-- Dynamic Sections -->
         
         <!-- Home Section -->
-        <section id="home-section" class="p-4 max-w-4xl mx-auto">
-            <div id="jobs-container" class="grid gap-4">
-                <div class="flex justify-center p-10"><i class="fas fa-circle-notch fa-spin text-3xl text-blue-600"></i></div>
+        <section id="home-section" class="p-4 max-w-4xl mx-auto animate-slide-up">
+            <!-- Search & Filter -->
+            <div class="mb-6 relative">
+                <input type="text" id="home-search" oninput="filterHomeData()" placeholder="Search jobs or workers..." class="w-full bg-white border-2 border-gray-100 p-4 pl-12 rounded-3xl outline-none focus:border-blue-500 shadow-sm font-bold transition-all">
+                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-300"></i>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex p-1 bg-gray-200 rounded-2xl mb-6 max-w-sm mx-auto shadow-inner">
+                <button onclick="switchHomeTab(0)" id="tab-workers" class="flex-1 py-3 rounded-xl font-black transition text-sm tab-active uppercase tracking-widest">Workers</button>
+                <button onclick="switchHomeTab(1)" id="tab-jobs" class="flex-1 py-3 rounded-xl font-black transition text-sm text-gray-500 hover:text-gray-700 uppercase tracking-widest">Jobs</button>
+            </div>
+
+            <div id="jobs-container" class="grid gap-4 sm:grid-cols-2">
+                <div class="flex justify-center p-10 col-span-full"><i class="fas fa-circle-notch fa-spin text-3xl text-blue-600"></i></div>
             </div>
         </section>
 
         <!-- Post Section -->
-        <section id="post-section" class="p-4 max-w-2xl mx-auto hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border">
-                <h3 class="text-xl font-bold mb-6 text-gray-800">Post a New Job</h3>
+        <section id="post-section" class="p-4 max-w-2xl mx-auto hidden animate-slide-up">
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100">
+                <h3 class="text-2xl font-black mb-6 text-gray-800 uppercase tracking-tighter">Post on LocalWork</h3>
+
+                <div class="flex p-1 bg-gray-100 rounded-2xl mb-8">
+                    <button type="button" onclick="setPostType(1)" id="post-type-job" class="flex-1 py-3 bg-white rounded-xl shadow-sm text-blue-600 font-black uppercase text-xs tracking-widest transition">Post a Job</button>
+                    <button type="button" onclick="setPostType(0)" id="post-type-worker" class="flex-1 py-3 text-gray-400 font-black uppercase text-xs tracking-widest transition">Worker Profile</button>
+                </div>
+
                 <form id="job-form" class="space-y-4">
+                    <input type="hidden" id="post-type-value" value="1">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
-                        <input type="text" id="job-title" required placeholder="e.g. Electrician needed for home repair" class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                        <label class="block text-xs font-black text-gray-400 uppercase mb-1 ml-1 tracking-widest">Title</label>
+                        <input type="text" id="job-title" required placeholder="e.g. Electrician needed for home repair" class="w-full border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition font-bold">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                            <select id="job-category" class="w-full border p-3 rounded-xl outline-none">
-                                <option>General</option>
-                                <option>Construction</option>
-                                <option>Cleaning</option>
-                                <option>Electrician</option>
-                                <option>Plumbing</option>
-                                <option>Delivery</option>
+                            <label class="block text-xs font-black text-gray-400 uppercase mb-1 ml-1 tracking-widest">Category</label>
+                            <select id="job-category" class="w-full border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl outline-none font-bold">
+                                <option>General</option><option>Construction</option><option>Cleaning</option>
+                                <option>Electrician</option><option>Plumbing</option><option>Driver</option>
+                                <option>Labour</option><option>Delivery</option><option>Tailor</option>
+                                <option>Maid</option><option>Other</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Expected Rate</label>
-                            <input type="text" id="job-rate" placeholder="₹ 500 / day" class="w-full border p-3 rounded-xl outline-none">
+                            <label class="block text-xs font-black text-gray-400 uppercase mb-1 ml-1 tracking-widest" id="rate-label">Budget (₹)</label>
+                            <input type="text" id="job-rate" placeholder="500 / day" class="w-full border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl outline-none font-bold">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                        <textarea id="job-desc" required placeholder="Tell us more about the work..." class="w-full border p-3 rounded-xl h-32 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                        <label class="block text-xs font-black text-gray-400 uppercase mb-1 ml-1 tracking-widest">Description</label>
+                        <textarea id="job-desc" required placeholder="Tell us more about the work..." class="w-full border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl h-32 focus:border-blue-500 focus:bg-white outline-none transition font-bold"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">Post Job Now</button>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-lg hover:bg-blue-700 transition shadow-xl shadow-blue-100 uppercase tracking-widest">Submit Post</button>
                 </form>
             </div>
         </section>
 
         <!-- Chat Section -->
-        <section id="chat-section" class="p-4 max-w-4xl mx-auto hidden">
-            <!-- Chat list injected by JS -->
-            <div class="text-center py-20 text-gray-500">
-                <i class="fas fa-comments text-5xl mb-4 block"></i>
-                <p>Select a conversation to start chatting.</p>
+        <section id="chat-section" class="p-4 max-w-4xl mx-auto hidden animate-slide-up h-[calc(100vh-160px)]">
+            <div class="bg-white rounded-[40px] shadow-sm border border-gray-100 h-full flex overflow-hidden">
+                <!-- Conversations List -->
+                <div id="conversations-list-container" class="w-full md:w-80 border-r flex flex-col">
+                    <div class="p-6 border-b">
+                        <h3 class="text-xl font-black text-gray-800 uppercase tracking-tighter">Messages</h3>
+                    </div>
+                    <div id="conversations-list" class="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-1">
+                        <div class="flex justify-center p-10"><i class="fas fa-circle-notch fa-spin text-blue-600"></i></div>
+                    </div>
+                </div>
+
+                <!-- Chat Window -->
+                <div id="chat-window" class="hidden md:flex flex-1 flex-col bg-gray-50 relative">
+                    <div id="chat-header" class="bg-white p-4 border-b flex items-center justify-between z-10">
+                        <div class="flex items-center">
+                            <button onclick="backToConversations()" class="md:hidden mr-3 text-gray-400"><i class="fas fa-arrow-left"></i></button>
+                            <img id="chat-partner-img" src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full mr-3 object-cover">
+                            <div>
+                                <h4 id="chat-partner-name" class="font-black text-gray-800 text-sm">Select a chat</h4>
+                                <p id="chat-partner-status" class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Online</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                             <button class="p-2 text-gray-400 hover:text-blue-600 transition"><i class="fas fa-phone"></i></button>
+                             <button class="p-2 text-gray-400 hover:text-red-500 transition"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="messages-container" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar flex flex-col">
+                        <div class="flex-1 flex flex-col justify-center items-center text-gray-400 italic text-sm">
+                            <i class="fas fa-comments text-4xl mb-4 opacity-20"></i>
+                            <p>Select a conversation to start chatting</p>
+                        </div>
+                    </div>
+
+                    <div id="chat-input-area" class="bg-white p-4 border-t flex gap-3 items-center">
+                        <input type="text" id="message-input" placeholder="Type a message..." class="flex-1 bg-gray-100 p-4 rounded-2xl outline-none font-bold focus:bg-white border-2 border-transparent focus:border-blue-500 transition">
+                        <button onclick="sendMessage()" class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-100 hover:bg-blue-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Account Section -->
-        <section id="account-section" class="p-4 max-w-2xl mx-auto hidden">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border text-center">
-                <div class="relative inline-block">
-                    <img id="profile-large-img" src="https://via.placeholder.com/120" class="mx-auto w-32 h-32 rounded-full border-4 border-white shadow-xl object-cover">
-                    <div class="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full border-2 border-white">
-                        <i class="fas fa-camera text-xs"></i>
+        <!-- Payments Section -->
+        <section id="payments-section" class="p-4 max-w-2xl mx-auto hidden animate-slide-up">
+            <div class="space-y-6">
+                <!-- QR Card -->
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-[40px] text-white text-center shadow-xl shadow-blue-100">
+                    <h3 class="text-xl font-black uppercase tracking-widest mb-6">Your Payment QR</h3>
+                    <div class="bg-white p-6 rounded-[32px] inline-block mb-6">
+                        <img id="payment-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=LocalWork" class="w-48 h-48">
+                    </div>
+                    <p class="text-xs font-bold opacity-80 max-w-xs mx-auto">Scan this QR to receive payment directly in your account.</p>
+                </div>
+
+                <!-- Transaction History -->
+                <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-black text-gray-800 uppercase tracking-widest mb-6">Recent Transactions</h3>
+                    <div id="payments-list" class="space-y-4">
+                        <div class="flex justify-center p-10"><i class="fas fa-circle-notch fa-spin text-blue-600"></i></div>
                     </div>
                 </div>
-                <h2 id="profile-name" class="text-2xl font-bold mt-6 text-gray-800">Guest User</h2>
-                <p id="profile-email" class="text-gray-500 mb-8">Login to manage your profile</p>
-                
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="bg-blue-50 p-4 rounded-xl text-center">
-                        <span class="block text-2xl font-bold text-blue-600">0</span>
-                        <span class="text-xs text-blue-400 uppercase font-semibold">Jobs Posted</span>
+            </div>
+        </section>
+
+        <!-- Account Section (Complete App Clone) -->
+        <section id="account-section" class="p-4 max-w-2xl mx-auto hidden animate-slide-up">
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 text-center mb-6">
+                <!-- Profile Image -->
+                <div class="relative inline-block group">
+                    <img id="profile-large-img" src="https://via.placeholder.com/120" class="mx-auto w-32 h-32 rounded-[40px] border-4 border-white shadow-xl object-cover cursor-pointer hover:brightness-90 transition">
+                    <div class="absolute bottom-0 right-0 bg-blue-600 text-white p-2.5 rounded-2xl border-2 border-white cursor-pointer hover:bg-blue-700 transition" onclick="document.getElementById('profile-upload').click()">
+                        <i class="fas fa-camera text-xs"></i>
                     </div>
-                    <div class="bg-green-50 p-4 rounded-xl text-center">
-                        <span class="block text-2xl font-bold text-green-600">0.0</span>
-                        <span class="text-xs text-green-400 uppercase font-semibold">Rating</span>
+                    <input type="file" id="profile-upload" class="hidden" accept="image/*" onchange="uploadProfilePicture(this)">
+                </div>
+
+                <h2 id="acc-display-name" class="text-2xl font-black mt-6 text-gray-800">Guest User</h2>
+                <button onclick="showIDCard()" class="text-amber-500 text-[10px] font-black uppercase tracking-widest hover:underline block mx-auto mt-1">View ID Card</button>
+
+                <!-- Completion Bar -->
+                <div class="my-8 px-4 text-left">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Profile Completion</span>
+                        <span id="completion-text" class="text-[10px] font-black text-blue-600 uppercase">30%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                        <div id="completion-bar" class="bg-blue-600 h-full transition-all duration-1000" style="width: 30%"></div>
                     </div>
                 </div>
 
-                <button onclick="logout()" class="w-full bg-red-50 text-red-600 font-bold py-3 rounded-xl hover:bg-red-100 transition">
-                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                <!-- Personal Information -->
+                <div class="text-left space-y-4 mb-8">
+                    <div class="bg-gray-50 p-6 rounded-[32px] border border-gray-100 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Personal Details</h4>
+                            <button onclick="detectLocation()" class="text-[10px] font-black text-blue-600 uppercase flex items-center gap-1"><i class="fas fa-location-arrow"></i> Detect Location</button>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="relative">
+                                <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 text-sm"></i>
+                                <input type="text" id="edit-name" placeholder="Full Name" class="w-full bg-white p-4 pl-12 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                            </div>
+                            <div class="relative">
+                                <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 text-sm"></i>
+                                <input type="tel" id="edit-phone" placeholder="Phone Number" class="w-full bg-white p-4 pl-12 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                            </div>
+                            <div class="relative">
+                                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 text-sm"></i>
+                                <input type="email" id="edit-email" placeholder="Email Address" class="w-full bg-white p-4 pl-12 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                            </div>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="col-span-2 relative">
+                                    <i class="fas fa-map-marker-alt absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 text-sm"></i>
+                                    <input type="text" id="edit-address" placeholder="Address" class="w-full bg-white p-4 pl-12 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition text-xs">
+                                </div>
+                                <input type="text" id="edit-pincode" placeholder="Pincode" class="w-full bg-white p-4 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Worker Mode Toggle -->
+                    <div class="bg-blue-600 p-6 rounded-[32px] text-white flex justify-between items-center shadow-lg shadow-blue-100">
+                        <div>
+                            <h4 class="font-black text-sm uppercase tracking-widest">Worker Mode</h4>
+                            <p class="text-[10px] opacity-80 font-bold">List yourself as a professional worker</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="worker-mode-toggle" class="sr-only peer" onchange="toggleWorkerFields(this.checked)">
+                            <div class="w-14 h-8 bg-blue-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-green-500"></div>
+                        </label>
+                    </div>
+
+                    <!-- Worker Details (Conditional) -->
+                    <div id="worker-details-fields" class="hidden space-y-4 bg-gray-50 p-6 rounded-[32px] border border-gray-100">
+                        <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 mb-2">Worker Qualifications</h4>
+                        <input type="text" id="edit-education" placeholder="Education (e.g. Graduate, ITI)" class="w-full bg-white p-4 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                        <input type="text" id="edit-experience" placeholder="Experience (e.g. 5 Years)" class="w-full bg-white p-4 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                        <input type="text" id="edit-skills" placeholder="Skills (e.g. Electrician, Plumbing)" class="w-full bg-white p-4 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition">
+                        <textarea id="edit-bio" placeholder="Professional Bio..." class="w-full bg-white p-4 rounded-2xl border-2 border-transparent focus:border-blue-500 outline-none font-bold shadow-sm transition h-24"></textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-blue-50 p-5 rounded-3xl text-center cursor-pointer hover:bg-blue-100 transition">
+                        <span id="stat-posts" class="block text-3xl font-black text-blue-600">0</span>
+                        <span class="text-[10px] text-blue-400 uppercase font-black tracking-widest">My Posts</span>
+                    </div>
+                    <div class="bg-green-50 p-5 rounded-3xl text-center">
+                        <span id="stat-rating" class="block text-3xl font-black text-green-600">0.0</span>
+                        <span class="text-[10px] text-green-400 uppercase font-black tracking-widest">Rating</span>
+                    </div>
+                </div>
+
+                <button onclick="updateProfile()" id="save-profile-btn" class="w-full bg-blue-600 text-white font-black py-4 rounded-2xl hover:bg-blue-700 transition tracking-widest uppercase mb-4 shadow-xl shadow-blue-100">
+                    Save Changes
                 </button>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <button class="bg-gray-50 p-5 rounded-3xl flex flex-col items-center justify-center gap-2 hover:bg-blue-50 transition group border border-transparent">
+                        <i class="fas fa-headset text-blue-500 text-xl group-hover:scale-110 transition"></i>
+                        <span class="text-[10px] font-black uppercase text-gray-600 tracking-widest">Support</span>
+                    </button>
+                    <button class="bg-gray-50 p-5 rounded-3xl flex flex-col items-center justify-center gap-2 hover:bg-blue-50 transition group border border-transparent">
+                        <i class="fas fa-info-circle text-blue-500 text-xl group-hover:scale-110 transition"></i>
+                        <span class="text-[10px] font-black uppercase text-gray-600 tracking-widest">About Us</span>
+                    </button>
+                </div>
+
+                <button onclick="logout()" class="w-full bg-red-50 text-red-600 font-black py-4 rounded-2xl hover:bg-red-100 transition tracking-widest uppercase text-sm">
+                    <i class="fas fa-power-off mr-2"></i> Logout Account
+                </button>
+            </div>
+
+            <!-- Integrated My Posts List -->
+            <div class="bg-white p-6 rounded-[40px] shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-4 px-2">
+                    <h3 class="text-sm font-black text-gray-800 uppercase tracking-widest">Manage Active Posts</h3>
+                </div>
+                <div id="account-myjobs-list" class="space-y-3">
+                     <p class="text-center text-gray-400 py-6 text-xs font-bold italic">No posts found.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Bottom Navigation for Mobile -->
-    <nav class="fixed bottom-0 left-0 w-full bg-white border-t flex md:hidden justify-around items-center h-16 z-20 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+    <nav class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-lg border-t flex md:hidden justify-around items-center h-20 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] px-4">
         <button onclick="showSection('home')" class="flex flex-col items-center flex-1 py-2 text-gray-400" id="nav-home-mobile">
-            <i class="fas fa-home text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">Home</span>
+            <i class="fas fa-home text-xl"></i>
+            <span class="text-[10px] mt-1.5 font-black uppercase tracking-tighter">Home</span>
         </button>
         <button onclick="showSection('post')" class="flex flex-col items-center flex-1 py-2 text-gray-400" id="nav-post-mobile">
-            <i class="fas fa-plus-circle text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">Post</span>
+            <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center -mt-8 shadow-xl shadow-blue-200 border-4 border-white text-white">
+                <i class="fas fa-plus"></i>
+            </div>
+            <span class="text-[10px] mt-1.5 font-black uppercase tracking-tighter">Post</span>
         </button>
         <button onclick="showSection('chat')" class="flex flex-col items-center flex-1 py-2 text-gray-400" id="nav-chat-mobile">
-            <i class="fas fa-comments text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">Chat</span>
+            <i class="fas fa-comments text-xl"></i>
+            <span class="text-[10px] mt-1.5 font-black uppercase tracking-tighter">Chat</span>
         </button>
         <button onclick="showSection('account')" class="flex flex-col items-center flex-1 py-2 text-gray-400" id="nav-account-mobile">
-            <i class="fas fa-user text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">Account</span>
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-[10px] mt-1.5 font-black uppercase tracking-tighter">Account</span>
         </button>
     </nav>
 
-    <!-- Job Details Modal -->
-    <div id="job-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div id="modal-content" class="p-6">
-                <!-- Modal content injected by JS -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[40px] overflow-hidden shadow-2xl">
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-black text-gray-800 tracking-tighter">LocalWork</h3>
+                    <p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest mt-1">Find Job & Workers</p>
+                </div>
+                <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-100 py-4 rounded-2xl font-black text-gray-700 hover:bg-gray-50 transition mb-6 shadow-sm">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
+                    Sign in with Google
+                </button>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="flex-1 h-0.5 bg-gray-50"></div>
+                    <span class="text-[10px] font-black text-gray-300 uppercase tracking-widest">OR</span>
+                    <div class="flex-1 h-0.5 bg-gray-50"></div>
+                </div>
+                <div id="phone-input-container">
+                    <div class="mb-4">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase ml-1 mb-2 tracking-widest">Phone Number</label>
+                        <div class="flex gap-2">
+                            <span class="bg-gray-50 border-2 border-gray-50 px-4 py-4 rounded-2xl font-black text-gray-500">+91</span>
+                            <input type="tel" id="phone-number" placeholder="10 Digit Number" class="flex-1 border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition font-black tracking-widest">
+                        </div>
+                    </div>
+                    <div id="recaptcha-container" class="mb-4"></div>
+                    <button id="send-otp-btn" onclick="sendOTP()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black shadow-xl shadow-blue-100 hover:bg-blue-700 transition uppercase tracking-widest">SEND OTP</button>
+                </div>
+                <div id="otp-input-container" class="hidden">
+                    <div class="mb-4">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase ml-1 mb-2 tracking-widest">Verification Code</label>
+                        <input type="text" id="otp-code" placeholder="------" class="w-full border-2 border-gray-50 bg-gray-50 p-4 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition font-black tracking-[1em] text-center text-xl">
+                    </div>
+                    <button onclick="verifyOTP()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-black shadow-xl shadow-green-100 hover:bg-green-700 transition uppercase tracking-widest">VERIFY & LOGIN</button>
+                </div>
             </div>
-            <div class="p-4 border-t bg-gray-50 flex justify-end gap-3">
-                <button onclick="closeModal()" class="px-6 py-2 text-gray-600 font-medium">Close</button>
-                <button id="modal-action-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium shadow-md">Contact Worker</button>
+            <div class="p-5 bg-gray-50 text-center border-t border-gray-100">
+                <button onclick="closeLoginModal()" class="text-xs font-black text-gray-400 hover:text-gray-800 uppercase tracking-widest">Maybe Later</button>
             </div>
         </div>
     </div>
 
-    <!-- Firebase SDK & App Logic -->
+    <!-- Modals -->
+    <div id="job-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-[40px] overflow-hidden shadow-2xl">
+            <div id="modal-content" class="p-8"></div>
+            <div class="p-6 border-t bg-gray-50 flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-4 text-gray-400 font-black uppercase tracking-widest">Close</button>
+                <button id="modal-action-btn" class="flex-[2] py-4 bg-blue-600 text-white rounded-2xl font-black shadow-xl shadow-blue-100 uppercase tracking-widest">Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ID Card Modal -->
+    <div id="id-card-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[110] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-[40px] overflow-hidden shadow-2xl relative">
+            <div class="bg-blue-600 h-32 relative">
+                <img src="LocalWork.png" class="w-12 h-12 absolute left-6 top-6">
+                <div class="absolute right-6 top-6 text-right">
+                    <h1 class="text-white text-lg font-black tracking-tighter">LocalWork</h1>
+                    <p class="text-blue-200 text-[8px] font-bold uppercase tracking-widest">Member ID Card</p>
+                </div>
+            </div>
+            <div class="px-8 pb-8 text-center -mt-16 relative">
+                <img id="id-card-img" src="https://via.placeholder.com/120" class="w-32 h-32 rounded-[40px] border-8 border-white shadow-xl mx-auto object-cover bg-white">
+                <h3 id="id-card-name" class="text-2xl font-black mt-4 text-gray-800">User Name</h3>
+                <p id="id-card-role" class="text-blue-500 text-[10px] font-black uppercase tracking-widest mt-1">Professional Worker</p>
+                <div class="mt-6 space-y-2 text-left bg-gray-50 p-4 rounded-3xl border border-gray-100">
+                    <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest">Registration ID</p>
+                    <p id="id-card-number" class="text-sm font-black text-gray-700 tracking-widest font-mono uppercase">LW-XXXX-XXXX</p>
+                    <div class="h-px bg-gray-200 my-2"></div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest">Joined On</p>
+                            <p id="id-card-date" class="text-xs font-black text-gray-700">Jan 2024</p>
+                        </div>
+                        <img id="id-card-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LocalWork" class="w-12 h-12">
+                    </div>
+                </div>
+            </div>
+            <button onclick="closeIDCard()" class="w-full bg-gray-100 py-4 text-xs font-black text-gray-500 uppercase tracking-widest hover:bg-gray-200">Close Card</button>
+        </div>
+    </div>
+
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

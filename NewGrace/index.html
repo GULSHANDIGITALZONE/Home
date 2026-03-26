@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGE - Admin & Employee Portal</title>
-        <link rel="shortcut icon" href="./new_enterprises_logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./new_enterprises_logo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -69,11 +69,17 @@
 
 <div id="loginSection" class="min-h-screen flex items-center justify-center">
     <div class="bg-white p-10 rounded-2xl shadow-2xl w-96 text-center border-t-4 border-blue-600">
-        <h2 class="text-3xl font-extrabold mb-2 text-blue-700">NGE</h2>
+        <img src="new_enterprises_logo.png">
         <p class="text-gray-500 mb-8 font-small">NEWGRACE ENTERPRISES PVT. LTD.</p>
-        <button onclick="loginWithGoogle()" class="flex items-center justify-center gap-3 w-full border-2 border-gray-300 p-3 rounded-xl hover:bg-gray-50 transition-all font-semibold text-gray-700">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/pwa_site/google.svg" class="w-6 h-6">
-            Sign in with Google
+        <button onclick="loginWithGoogle()"
+                class="flex items-center justify-center gap-3 w-full p-3 rounded-xl border border-gray-300 bg-white hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-200 font-medium text-gray-700">
+
+            <!-- Google Icon -->
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+                 alt="Google"
+                 class="w-5 h-5">
+
+            <span>Continue with Google</span>
         </button>
         <p id="loadingMsg" class="mt-4 text-sm text-blue-600 hidden font-bold animate-pulse">Checking access...</p>
     </div>

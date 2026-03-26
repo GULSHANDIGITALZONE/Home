@@ -3,215 +3,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGE - Google Login Portal</title>
+    <title>NGE - Admin & Employee Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    <style>
+        @media print {
+            body * { visibility: hidden; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            #idCardPrintArea, #idCardPrintArea * { visibility: visible; }
+            #idCardPrintArea { 
+                position: absolute; left: 0; top: 0; width: 100%;
+                display: flex !important; flex-direction: column; align-items: center; gap: 40px;
+            }
+            .no-print { display: none !important; }
+            .id-card { margin-bottom: 50px; break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd !important; }
+            /* Force SVG and Background colors to appear in print */
+            svg, path, div { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        .id-card {
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-family: sans-serif;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* SVG Background Helpers */
+        .header-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 110px; z-index: 1;
+        }
+        .footer-bg {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 1;
+        }
+
+        .card-content {
+            position: relative; z-index: 10;
+        }
+
+        .logo-circle {
+            width: 52px; height: 52px; background: white; border-radius: 50%;
+            padding: 4px; display: flex; align-items: center; justify-content: center;
+            border: 2px solid white; flex-shrink: 0;
+        }
+
+        .profile-img-container {
+            width: 130px; height: 130px; border-radius: 50%; border: 4px solid white;
+            margin: -30px auto 0; position: relative; z-index: 20;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow: hidden; background: #f3f4f6;
+        }
+
+        .details-table td { padding: 3px 0; font-size: 11px; vertical-align: top; }
+        .label { color: #757575; font-weight: bold; text-transform: uppercase; width: 95px; flex-shrink: 0; }
+        .value { color: #212121; font-weight: 800; overflow-wrap: anywhere; }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100">
 
-    <!-- Login Section -->
-    <div id="loginSection" class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-10 rounded-2xl shadow-2xl w-96 text-center">
-            <h2 class="text-3xl font-extrabold mb-2 text-blue-700">NGE</h2>
-            <p class="text-gray-500 mb-8">NEWGRACE ENTERPRISES PVT. LTD.</p>
-            
-            <button onclick="loginWithGoogle()" class="flex items-center justify-center gap-3 w-full border-2 border-gray-300 p-3 rounded-lg hover:bg-gray-50 transition-all font-medium">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/pwa_site/google.svg" class="w-6 h-6">
-                Sign in with Google
-            </button>
-            
-            <p id="loadingMsg" class="mt-4 text-sm text-blue-600 hidden">Checking your account...</p>
+<div id="loginSection" class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-10 rounded-2xl shadow-2xl w-96 text-center border-t-4 border-blue-600">
+        <h2 class="text-3xl font-extrabold mb-2 text-blue-700">NGE</h2>
+        <p class="text-gray-500 mb-8 font-small">NEWGRACE ENTERPRISES PVT. LTD.</p>
+        <button onclick="loginWithGoogle()" class="flex items-center justify-center gap-3 w-full border-2 border-gray-300 p-3 rounded-xl hover:bg-gray-50 transition-all font-semibold text-gray-700">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/pwa_site/google.svg" class="w-6 h-6">
+            Sign in with Google
+        </button>
+        <p id="loadingMsg" class="mt-4 text-sm text-blue-600 hidden font-bold animate-pulse">Checking access...</p>
+    </div>
+</div>
+
+<div id="dashboardSection" class="hidden min-h-screen">
+    <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-lg sticky top-0 z-50 no-print">
+        <div class="flex items-center gap-2">
+            <span class="bg-white text-blue-600 px-2 py-0.5 rounded font-black">NGE</span>
+            <h1 class="text-lg font-bold">PORTAL</h1>
         </div>
-    </div>
+        <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded-lg text-sm font-bold shadow">Logout</button>
+    </nav>
 
-    <!-- Main Dashboard -->
-    <div id="dashboardSection" class="hidden min-h-screen">
-        <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
-            <h1 class="text-xl font-bold">NGE Portal (<span id="roleLabel">...</span>)</h1>
-            <div class="flex items-center gap-4">
-                <span id="userEmailLabel" class="text-sm font-medium"></span>
-                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-1 rounded text-sm transition-colors">Logout</button>
+    <main class="p-6 max-w-7xl mx-auto">
+        <div id="adminView" class="hidden">
+            <div class="flex justify-between mb-8 gap-4 items-center no-print">
+                <input type="text" onkeyup="searchEmployee(this.value)" placeholder="Search Name, Email or ID..." class="p-3 pl-10 border rounded-xl w-1/3 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                <button onclick="openAddModal()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold shadow-lg">+ Add Employee</button>
             </div>
-        </nav>
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden no-print">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 text-gray-500 uppercase text-xs font-bold">
+                    <tr>
+                        <th class="p-5">Employee Info</th>
+                        <th class="p-5">Designation</th>
+                        <th class="p-5">Contact</th>
+                        <th class="p-5 text-center">Status</th>
+                        <th class="p-5 text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="employeeTableBody" class="divide-y divide-gray-100"></tbody>
+                </table>
+            </div>
+        </div>
 
-        <main class="p-6">
-            <!-- Admin View -->
-            <div id="adminView" class="hidden">
-                <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                    <input type="text" onkeyup="searchEmployee(this.value)" placeholder="Search Name, Email or ID..." class="p-3 border rounded-lg w-full md:w-1/3 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                    <div class="bg-blue-50 px-4 py-2 rounded-lg text-blue-800 font-medium self-start">
-                        Total Employees: <span id="empCount">0</span>
+        <div id="idCardDisplayArea" class="hidden flex flex-col items-center mt-6">
+            <div id="idCardPrintArea" class="space-y-10">
+                <!-- FRONT SIDE -->
+                <div id="cardFront" class="id-card">
+                    <div class="header-bg">
+                        <svg viewBox="0 0 320 100" width="100%" height="100%" preserveAspectRatio="none">
+                            <path d="M0,0 h320 v85 Q160,100 0,85 Z" fill="#0D47A1"/>
+                            <path d="M0,0 h320 v60 Q240,90 120,70 Q60,60 0,80 Z" fill="#42A5F5" fill-opacity="0.3"/>
+                            <path d="M320,0 v50 Q200,80 80,40 Q40,20 0,50 v-50 Z" fill="#BBDEFB" fill-opacity="0.2"/>
+                        </svg>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="flex items-center gap-3 p-4 h-[90px]">
+                            <div class="logo-circle">
+                                <img src="new_enterprises_logo.png" onerror="this.src='https://via.placeholder.com/40'" class="w-full h-full object-contain">
+                            </div>
+                            <div class="z-10 overflow-hidden">
+                                <h2 class="text-white font-bold text-lg leading-tight uppercase whitespace-nowrap">NEWGRACE ENTERPRISES</h2>
+                                <p class="text-white text-[11px] tracking-widest font-bold opacity-100">PVT. LTD.</p>
+                            </div>
+                        </div>
+
+                        <div class="profile-img-container">
+                            <img id="viewImg" src="https://via.placeholder.com/150" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="text-center px-6 mt-4">
+                            <h3 id="viewName" class="text-xl font-black text-gray-800 uppercase leading-tight">NAME</h3>
+                            <p id="viewDesig" class="text-red-600 font-black text-sm uppercase">DESIGNATION</p>
+                            <div class="w-full h-px bg-gray-100 my-3"></div>
+                            <table class="w-full text-left details-table">
+                                <tr><td class="label">EMP ID:</td><td id="viewId" class="value">---</td></tr>
+                                <tr><td class="label">DEPARTMENT:</td><td id="viewDept" class="value">---</td></tr>
+                                <tr><td class="label">AGE:</td><td id="viewAge" class="value">---</td></tr>
+                                <tr><td class="label">BLOOD GROUP:</td><td id="viewBlood" class="value text-red-600">---</td></tr>
+                                <tr><td class="label">CONTACT:</td><td id="viewContact" class="value">---</td></tr>
+                                <tr><td class="label">EMAIL:</td><td id="viewEmail" class="value lowercase">---</td></tr>
+                                <tr><td class="label">EMERGENCY:</td><td id="viewEmergency" class="value">---</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="relative h-[80px] mt-4 overflow-hidden">
+                            <div class="footer-bg">
+                                <svg viewBox="0 0 320 80" width="100%" height="100%" preserveAspectRatio="none">
+                                    <path d="M0,80 h320 v-65 Q160,-10 0,15 Z" fill="#0D47A1"/>
+                                    <path d="M0,80 h320 v-40 Q240,0 120,30 Q60,40 0,20 Z" fill="#42A5F5" fill-opacity="0.3"/>
+                                    <path d="M320,80 v-30 Q200,0 80,40 Q40,60 0,30 v50 Z" fill="#BBDEFB" fill-opacity="0.2"/>
+                                </svg>
+                            </div>
+                            <div class="card-content flex items-end justify-center h-full pb-4">
+                                <span class="text-white font-black text-[11px] tracking-widest uppercase">WWW.NGEINDIA.IN</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 text-gray-700 uppercase text-xs font-bold">
-                            <tr>
-                                <th class="p-4">Employee</th>
-                                <th class="p-4">Designation</th>
-                                <th class="p-4">Contact</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="employeeTableBody" class="divide-y divide-gray-100"></tbody>
-                    </table>
+
+                <!-- BACK SIDE -->
+                <div id="cardBack" class="id-card no-print" style="display: none;">
+                    <div class="header-bg" style="height: 100px;">
+                        <svg viewBox="0 0 320 100" width="100%" height="100%" preserveAspectRatio="none">
+                            <path d="M0,0 h320 v85 Q160,100 0,85 Z" fill="#0D47A1"/>
+                            <path d="M0,0 h320 v60 Q240,90 120,70 Q60,60 0,80 Z" fill="#42A5F5" fill-opacity="0.3"/>
+                            <path d="M320,0 v50 Q200,80 80,40 Q40,20 0,50 v-50 Z" fill="#BBDEFB" fill-opacity="0.2"/>
+                        </svg>
+                    </div>
+                    <div class="card-content p-6 text-center">
+                        <h2 class="text-white font-bold text-xl  pt-2 z-10 relative">Company Address:</h2>
+                        <p class="text-[11px] text-gray-700 leading-relaxed font-bold mt-12">
+                            Foundry Nagar, Agra, Uttar Pradesh - 282006
+                        </p>
+                        <div class="mt-4 space-y-1">
+                            <p class="text-blue-800 font-bold text-xs">+91 82720 66920</p>
+                            <p class="text-blue-800 font-bold text-xs lowercase">graceenterprises179@gmail.com</p>
+                        </div>
+                        <div class="w-full h-px bg-gray-100 my-4"></div>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase">Emergency Contact</p>
+                        <p id="viewBackEmergency" class="font-black text-sm">---</p>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=NGE" class="mx-auto my-4 w-20 h-20">
+                        <img src="sign.jpeg" onerror="this.style.display='none'" class="mx-auto h-12 object-contain">
+                        <div class="w-24 h-px bg-black mx-auto mt-1"></div>
+                        <p class="text-[9px] italic font-bold">Authorized Signatory</p>
+                    </div>
+                    <div class="relative h-[100px] overflow-hidden">
+                        <div class="footer-bg" style="height: 100px;">
+                            <svg viewBox="0 0 320 80" width="100%" height="100%" preserveAspectRatio="none">
+                                <path d="M0,80 h320 v-65 Q160,-10 0,15 Z" fill="#0D47A1"/>
+                                <path d="M0,80 h320 v-40 Q240,0 120,30 Q60,40 0,20 Z" fill="#42A5F5" fill-opacity="0.3"/>
+                                <path d="M320,80 v-30 Q200,0 80,40 Q40,60 0,30 v50 Z" fill="#BBDEFB" fill-opacity="0.2"/>
+                            </svg>
+                        </div>
+                        <div class="card-content p-4 text-white text-[10px] flex flex-col justify-end h-full">
+                            <p class="font-bold mb-1 uppercase">Terms & Conditions:</p>
+                            <p class="opacity-90 leading-tight">This card is property of NGE. If found, please return to the address mentioned above.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Employee View -->
-            <div id="employeeView" class="hidden flex justify-center mt-10">
-                <div id="myDetailsCard" class="bg-white p-8 rounded-2xl shadow-2xl border-t-8 border-blue-600 w-full max-w-md text-center">
-                    <div class="animate-pulse">Loading your data...</div>
-                </div>
+            <div class="flex gap-4 mt-8 no-print">
+                <button onclick="flipCard()" class="bg-yellow-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Flip Card</button>
+                <button onclick="printBoth()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg flex items-center gap-2">🖨️ Print Both Sides</button>
+                <button onclick="backToAdmin()" class="bg-gray-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Back to List</button>
             </div>
-        </main>
+        </div>
+    </main>
+</div>
+
+<!-- Modal Form -->
+<div id="empModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-[100] p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden">
+        <div class="bg-blue-600 p-4 text-white flex justify-between items-center">
+            <h3 id="modalTitle" class="text-xl font-bold">Employee Details</h3>
+            <button onclick="closeModal()" class="text-2xl font-bold">&times;</button>
+        </div>
+        <form id="empForm" class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="hidden" id="existingImageUrl">
+            <div class="md:col-span-1">
+                <label class="block text-xs font-bold text-gray-500 mb-1">EMP ID</label>
+                <input type="text" id="formId" readonly class="w-full p-2 border bg-gray-50 rounded font-bold text-blue-700">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Full Name</label>
+                <input type="text" id="formName" required class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Email (Google)</label>
+                <input type="email" id="formEmail" required class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Designation</label>
+                <input type="text" id="formDesig" required class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Department</label>
+                <input type="text" id="formDept" class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Contact No</label>
+                <input type="text" id="formContact" class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Blood Group</label>
+                <input type="text" id="formBlood" class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Age</label>
+                <input type="text" id="formAge" class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Emergency No</label>
+                <input type="text" id="formEmergency" class="w-full p-2 border rounded outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Photo</label>
+                <input type="file" id="formFile" accept="image/*" class="w-full text-xs">
+            </div>
+            <div class="md:col-span-2 flex justify-end gap-3 mt-4">
+                <button type="submit" id="saveBtn" class="bg-blue-600 text-white px-10 py-2 rounded-xl font-bold shadow-lg">Save Employee</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script>
-        // --- FIREBASE CONFIG (APNE CONSOLE SE COPY KAREIN) ---
-       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyA_Xe1b5ru1l4_aSzOXVGCbiuLxK53So70",
-  authDomain: "newgrace-enterprises.firebaseapp.com",
-  projectId: "newgrace-enterprises",
-  storageBucket: "newgrace-enterprises.firebasestorage.app",
-  messagingSenderId: "429562265089",
-  appId: "1:429562265089:web:9a02e3acbea803b6a9ca00",
-  measurementId: "G-RB1PSX5B89"
-};
-        // ---------------------------------------------------
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyA_Xe1b5ru1l4_aSzOXVGCbiuLxK53So70",
+        authDomain: "newgrace-enterprises.firebaseapp.com",
+        projectId: "newgrace-enterprises",
+        storageBucket: "newgrace-enterprises.firebasestorage.app",
+        messagingSenderId: "429562265089",
+        appId: "1:429562265089:web:9a02e3acbea803b6a9ca00",
+        measurementId: "G-RB1PSX5B89"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+    function loginWithGoogle() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+    }
 
-        // UI Elements
-        const loginSection = document.getElementById('loginSection');
-        const dashboardSection = document.getElementById('dashboardSection');
-        const adminView = document.getElementById('adminView');
-        const employeeView = document.getElementById('employeeView');
-        const loadingMsg = document.getElementById('loadingMsg');
-
-        // Google Sign-In Function
-        async function loginWithGoogle() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            loadingMsg.classList.remove('hidden');
-            try {
-                await auth.signInWithPopup(provider);
-            } catch (e) {
-                alert("Login Failed: " + e.message);
-                loadingMsg.classList.add('hidden');
-            }
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            checkRole(user.email);
+        } else {
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('dashboardSection').classList.add('hidden');
         }
+    });
 
-        // Listen for Auth Changes
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                loginSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-                document.getElementById('userEmailLabel').innerText = user.email;
-                checkRole(user.email);
-            } else {
-                loginSection.classList.remove('hidden');
-                dashboardSection.classList.add('hidden');
-                loadingMsg.classList.add('hidden');
-            }
+    async function checkRole(email) {
+        const adminDoc = await db.collection('admins').doc(email).get();
+        if (adminDoc.exists) {
+            document.getElementById('adminView').classList.remove('hidden');
+            loadAllEmployees();
+        } else {
+            printSpecific(email);
+        }
+    }
+
+    function loadAllEmployees() {
+        db.collection('employees').onSnapshot(snap => {
+            const tbody = document.getElementById('employeeTableBody');
+            tbody.innerHTML = "";
+            snap.forEach(doc => {
+                const emp = doc.data();
+                const id = doc.id;
+                tbody.innerHTML += `
+                    <tr class="border-b">
+                        <td class="p-4 flex items-center gap-3">
+                            <img src="${emp.imageUrl || ''}" class="w-10 h-10 rounded-full object-cover">
+                            <div><div class="font-bold">${emp.name}</div><div class="text-[10px] text-blue-500 font-bold uppercase">ID: ${id}</div></div>
+                        </td>
+                        <td class="p-4 text-sm font-semibold">${emp.designation}</td>
+                        <td class="p-4 text-sm">${emp.contactNo}</td>
+                        <td class="p-4 text-center">
+                            <span class="px-2 py-1 rounded-full text-[10px] font-black ${emp.isBlocked ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}">
+                                ${emp.isBlocked ? 'BLOCKED' : 'ACTIVE'}
+                            </span>
+                        </td>
+                        <td class="p-4 text-center flex justify-center gap-3">
+                            <button onclick="printSpecific('${emp.email}')" class="text-blue-600 font-bold text-xs uppercase">Print</button>
+                            <button onclick="editEmp('${id}', ${JSON.stringify(emp).replace(/"/g, '&quot;')})" class="text-green-600 font-bold text-xs uppercase">Edit</button>
+                            <button onclick="toggleBlock('${id}', ${emp.isBlocked})" class="text-gray-500 font-bold text-xs uppercase">${emp.isBlocked ? 'Unblock' : 'Block'}</button>
+                        </td>
+                    </tr>`;
+            });
         });
+    }
 
-        function logout() { auth.signOut(); }
-
-        async function checkRole(email) {
-            const adminDoc = await db.collection('admins').doc(email).get();
-            if (adminDoc.exists) {
-                document.getElementById('roleLabel').innerText = "ADMIN";
-                adminView.classList.remove('hidden');
-                employeeView.classList.add('hidden');
-                loadAllEmployees();
-            } else {
-                document.getElementById('roleLabel').innerText = "EMPLOYEE";
-                employeeView.classList.remove('hidden');
-                adminView.classList.add('hidden');
-                loadMyDetails(email);
-            }
+    async function loadMyDetails(email) {
+        const snap = await db.collection('employees').where('email', '==', email).get();
+        if (!snap.empty) {
+            const emp = snap.docs[0].data();
+            const id = snap.docs[0].id;
+            document.getElementById('viewName').innerText = emp.name;
+            document.getElementById('viewDesig').innerText = emp.designation;
+            document.getElementById('viewId').innerText = id;
+            document.getElementById('viewDept').innerText = emp.department || "N/A";
+            document.getElementById('viewAge').innerText = emp.age || "N/A";
+            document.getElementById('viewBlood').innerText = emp.bloodGroup || "N/A";
+            document.getElementById('viewContact').innerText = emp.contactNo;
+            document.getElementById('viewEmail').innerText = emp.email;
+            document.getElementById('viewEmergency').innerText = emp.emergencyNo || "N/A";
+            document.getElementById('viewBackEmergency').innerText = emp.emergencyNo || "N/A";
+            document.getElementById('viewImg').src = emp.imageUrl || "https://via.placeholder.com/150";
         }
+    }
 
-        function loadAllEmployees() {
-            db.collection('employees').onSnapshot(snapshot => {
-                const tbody = document.getElementById('employeeTableBody');
-                document.getElementById('empCount').innerText = snapshot.size;
-                tbody.innerHTML = "";
-                snapshot.forEach(doc => {
-                    const emp = doc.data();
-                    const id = doc.id;
-                    tbody.innerHTML += `
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-4 flex items-center gap-3">
-                                <img src="${emp.imageUrl || 'https://via.placeholder.com/100'}" class="w-12 h-12 rounded-full border">
-                                <div>
-                                    <div class="font-bold text-gray-800">${emp.name}</div>
-                                    <div class="text-xs text-gray-500">ID: ${id}</div>
-                                </div>
-                            </td>
-                            <td class="p-4 text-sm text-gray-600">${emp.designation}</td>
-                            <td class="p-4 text-sm">${emp.contactNo}</td>
-                            <td class="p-4">
-                                <span class="px-2 py-1 rounded-full text-xs font-bold ${emp.isBlocked ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}">
-                                    ${emp.isBlocked ? 'BLOCKED' : 'ACTIVE'}
-                                </span>
-                            </td>
-                            <td class="p-4">
-                                <button onclick="toggleBlock('${id}', ${emp.isBlocked})" class="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded text-sm transition-all">
-                                    ${emp.isBlocked ? 'Unblock' : 'Block'}
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
+    function flipCard() {
+        const front = document.getElementById('cardFront');
+        const back = document.getElementById('cardBack');
+        if (front.style.display === 'none') {
+            front.style.display = 'block';
+            back.style.display = 'none';
+            back.classList.add('no-print');
+            front.classList.remove('no-print');
+        } else {
+            front.style.display = 'none';
+            back.style.display = 'block';
+            front.classList.add('no-print');
+            back.classList.remove('no-print');
+        }
+    }
+
+    function printBoth() {
+        document.getElementById('cardFront').style.display = 'block';
+        document.getElementById('cardBack').style.display = 'block';
+        document.getElementById('cardFront').classList.remove('no-print');
+        document.getElementById('cardBack').classList.remove('no-print');
+        window.print();
+        document.getElementById('cardBack').style.display = 'none';
+    }
+
+    function printSpecific(email) {
+        document.getElementById('adminView').classList.add('hidden');
+        document.getElementById('idCardDisplayArea').classList.remove('hidden');
+        loadMyDetails(email);
+    }
+
+    function backToAdmin() {
+        document.getElementById('adminView').classList.remove('hidden');
+        document.getElementById('idCardDisplayArea').classList.add('hidden');
+    }
+
+    function generateNextId() {
+        db.collection("employees").get().then(snap => {
+            let max = 0;
+            snap.forEach(doc => {
+                const n = parseInt(doc.id.replace("NGE", "")) || 0;
+                if (n > max) max = n;
             });
-        }
+            document.getElementById('formId').value = "NGE" + (max + 1).toString().padStart(3, '0');
+        });
+    }
 
-        async function loadMyDetails(email) {
-            const snapshot = await db.collection('employees').where('email', '==', email).get();
-            const card = document.getElementById('myDetailsCard');
-            if (!snapshot.empty) {
-                const emp = snapshot.docs[0].data();
-                card.innerHTML = `
-                    <img src="${emp.imageUrl || 'https://via.placeholder.com/150'}" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-50 shadow-lg object-cover">
-                    <h2 class="text-3xl font-bold text-gray-800">${emp.name}</h2>
-                    <p class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-6">${emp.designation}</p>
-                    
-                    <div class="grid grid-cols-2 gap-4 text-left border-t pt-6">
-                        <div><p class="text-xs text-gray-400">EMPLOYEE ID</p><p class="font-medium">${snapshot.docs[0].id}</p></div>
-                        <div><p class="text-xs text-gray-400">DEPARTMENT</p><p class="font-medium">${emp.department}</p></div>
-                        <div><p class="text-xs text-gray-400">CONTACT</p><p class="font-medium">${emp.contactNo}</p></div>
-                        <div><p class="text-xs text-gray-400">BLOOD GROUP</p><p class="font-medium text-red-600">${emp.bloodGroup}</p></div>
-                    </div>
+    function openAddModal() {
+        document.getElementById('empForm').reset();
+        document.getElementById('existingImageUrl').value = "";
+        document.getElementById('empModal').classList.remove('hidden');
+        generateNextId();
+    }
 
-                    ${emp.isBlocked ? '<div class="mt-8 p-3 bg-red-600 text-white rounded-lg font-bold animate-bounce">ACCESS DENIED - ACCOUNT BLOCKED</div>' : ''}
-                `;
-            } else {
-                card.innerHTML = `<div class="text-red-500 font-bold">No employee record found for: ${email}</div>`;
-            }
-        }
+    function closeModal() { document.getElementById('empModal').classList.add('hidden'); }
 
-        function toggleBlock(id, currentStatus) {
-            if(confirm("Are you sure?")) {
-                db.collection('employees').doc(id).update({ isBlocked: !currentStatus });
-            }
-        }
+    function editEmp(id, data) {
+        document.getElementById('formId').value = id;
+        document.getElementById('formName').value = data.name;
+        document.getElementById('formEmail').value = data.email;
+        document.getElementById('formDesig').value = data.designation;
+        document.getElementById('formDept').value = data.department;
+        document.getElementById('formContact').value = data.contactNo;
+        document.getElementById('formBlood').value = data.bloodGroup;
+        document.getElementById('formAge').value = data.age;
+        document.getElementById('formEmergency').value = data.emergencyNo;
+        document.getElementById('existingImageUrl').value = data.imageUrl || "";
+        document.getElementById('empModal').classList.remove('hidden');
+    }
 
-        function searchEmployee(query) {
-            const rows = document.querySelectorAll('#employeeTableBody tr');
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(query.toLowerCase()) ? '' : 'none';
-            });
+    document.getElementById('empForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('formId').value;
+        const saveBtn = document.getElementById('saveBtn');
+        saveBtn.disabled = true;
+        saveBtn.innerText = "Saving...";
+
+        let url = document.getElementById('existingImageUrl').value;
+        const file = document.getElementById('formFile').files[0];
+        if (file) {
+            const snap = await storage.ref('employee_images/' + id).put(file);
+            url = await snap.ref.getDownloadURL();
         }
-    </script>
+        const data = {
+            id: id,
+            name: document.getElementById('formName').value,
+            email: document.getElementById('formEmail').value,
+            designation: document.getElementById('formDesig').value,
+            department: document.getElementById('formDept').value,
+            contactNo: document.getElementById('formContact').value,
+            bloodGroup: document.getElementById('formBlood').value,
+            age: document.getElementById('formAge').value,
+            emergencyNo: document.getElementById('formEmergency').value,
+            imageUrl: url,
+            isBlocked: false
+        };
+        await db.collection('employees').doc(id).set(data, { merge: true });
+        closeModal();
+        saveBtn.disabled = false;
+        saveBtn.innerText = "Save Employee";
+    };
+
+    function toggleBlock(id, s) { db.collection('employees').doc(id).update({ isBlocked: !s }); }
+    function logout() { auth.signOut(); }
+    function searchEmployee(q) {
+        const rows = document.querySelectorAll('#employeeTableBody tr');
+        rows.forEach(r => r.style.display = r.innerText.toLowerCase().includes(q.toLowerCase()) ? '' : 'none');
+    }
+</script>
 </body>
 </html>
